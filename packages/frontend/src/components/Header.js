@@ -477,8 +477,8 @@ export default ({ loggedInUser, client }) => {
   if (memberError || poolError) throw new Error(`Error!: ${memberError} ${poolError}`);
   return (
     <div id="header">
-      <Grid container columns={3} stackable verticalAlign="center">
-        <Grid.Column textAlign="right" className="logo">
+      <Grid container columns={2} stackable verticalAlign="center">
+        <Grid.Column textAlign="left" className="logo">
           <Link to="/">ROSEBUD DAO</Link>
         </Grid.Column>
         <Grid.Column textAlign="right" className="dropdown">

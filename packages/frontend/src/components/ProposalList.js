@@ -15,8 +15,8 @@ const ProposalCard = ({ proposal }) => {
 
   return (
     <Grid.Column mobile={16} tablet={8} computer={5}>
-      <Link to={{ pathname: `/proposals/${id}` }} className="uncolored">
-        <Segment className="blurred box">
+      <Link to={{ pathname: `/proposals/${id}` }} >
+        <Segment raised>
           <p className="name">{proposal.title ? proposal.title : "N/A"}</p>
           <p className="subtext description">
             {proposal.description ? proposal.description : "N/A"}

@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Button, Statistic, Loader, Segment, } from "semantic-ui-react";
+import { Grid, Button, Statistic, Loader, Segment,Icon,} from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import { useQuery } from "react-apollo";
 import { utils } from "ethers";
@@ -41,40 +41,35 @@ const Home = () => {
 
   return (
     <div id="homepage">
-       <Grid.Column width={9}>
-            <Grid container doubling stackable columns={2} padded textAlign="center">
-              <Grid.Column>
-                <NumMembers />
-              </Grid.Column>
-              <Grid.Column>
-                <NumProposals />
-              </Grid.Column>
-            </Grid>
-          </Grid.Column>
-      <Segment raised>
+       <div id="menu">
+        <div class="ui pointing secondary menu">
+          <NumMembers class="item"/>
+          <NumProposals class="item"/>
+        </div>
+       </div>
+
+      <Segment raised id="homeSegment1">
       <Grid container textAlign="center">
-        <Grid container doubling stackable columns="equal">
+        <Grid container doubling stackable columns="equal" padded>
           <Grid.Column>
             <Grid.Row className="guild_value" textAlign="center">
                 <Statistic>
-                  <Statistic.Value>
-                    {convertWeiToDollars(guildBankValue, exchangeRate)}
+                  <h1 id="mainHeader">Total Guild Bank Balance</h1>
+                  <Statistic.Value id="bankBalance">
+                    {convertWeiToDollars(guildBankValue, exchangeRate)} USD
                   </Statistic.Value>
-                  <Statistic.Label >Guild Bank Value</Statistic.Label>
+                  <h2 id="ethExchange"><Icon name='ethereum' />{parseFloat(utils.formatEther(guildBankValue)).toFixed(4)} ETH</h2>
                 </Statistic>
             </Grid.Row>
           </Grid.Column>
         </Grid>
+      </Grid>
+      </Segment>
       
-        <Grid container stackable columns={3} className="blurred box">
+      <Segment raised id="homeSegment2">
+        <Grid container doubling stackable columns={2}>
           <Grid.Column textAlign="center">
             <Statistic label="Total Shares" value={totalShares} />
-          </Grid.Column>
-          <Grid.Column textAlign="center">
-            <Statistic
-              label="Total ETH"
-              value={parseFloat(utils.formatEther(guildBankValue)).toFixed(0)}
-            />
           </Grid.Column>
           <Grid.Column textAlign="center">
             <Statistic
@@ -83,7 +78,6 @@ const Home = () => {
             />
           </Grid.Column>
         </Grid>
-      </Grid>
       </Segment>
     </div>
   );

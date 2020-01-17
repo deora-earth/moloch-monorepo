@@ -45,10 +45,6 @@ body {
   }
 }
 
-.homeContainer {
-  
-}
-
 .formErrors {
   color: red;
   font-size: 12px;
@@ -61,11 +57,11 @@ body {
 }
 
 .uncolored {
-  color: rgb(10, 1, 48) !important;
+  color: rgb(49, 25, 155) !important;
 }
 
 .blurred {
-  background: rgba(100, 100, 100, 0.9) !important;
+  background: #ececec !important;
 }
 
 .transparent {
@@ -73,10 +69,7 @@ body {
 }
 
 .blurred.box {
-  background: #F8F9FA !important;
   padding: 30px;
-  border-radius: 15px;
-  box-shadow: 14px 11px 23px 3px rgba(153, 153, 153, 0.055);
 }
 
 #background {
@@ -94,29 +87,26 @@ body {
 }
 
 #header {
-  height: 80px;
+  height: 20px;
   width: 100%;
   color: rgb(10, 1, 48) !important;
   margin-top: 20px;
-  margin-left: 20px;
-  margin-right: 20px;
   .menu {
     font-size: 20px;
     color: rgb(10, 1, 48) !important
   }
   .right_dropdown>.text {
     color: rgb(10, 1, 48) !important;
-    padding: 6px !important;
+    padding: 15px !important;
   }
   .logo {
-    font-size: 20px;
+    font-size: 25px;
     text-decoration: none;
     a {
       color: inherit;
     }
-    padding: 22px;
-    padding-left: 0;
-    padding-right: 0;
+    padding: 20px 0 20px 0;
+    margin: auto;
   }
   .dropdown {
     .label {
@@ -125,10 +115,8 @@ body {
     .menu {
       background-color: whitesmoke !important;
       box-shadow: inset;
-      margin-top: 0px;
-      padding: 10px;
+      padding: 20px 30px;
       font-size: 15px;
-      font-weight: normal;
       border-radius: 5px;
       input {
         color: rgb(10, 1, 48);
@@ -184,6 +172,22 @@ body {
     color: rgb(10, 1, 48) !important;
   }
 
+#homeSegment1 {
+  height: 250px;
+  width: 88%;
+}
+
+#homeSegment2 {
+  margin-top: 30px;
+  padding: 45px;
+  height: 170px;
+  text-align: center;
+  width: 88%;
+}
+
+#menu {
+  width: 88%;
+}
   
   @media screen and (min-width: 320px) and (max-width: 375px) { 
     .btn_link {
@@ -233,6 +237,21 @@ body {
       padding-right: 10px !important;
     }
   }
+}
+
+
+#mainHeader {
+  padding: 25px;
+  margin-bottom: 0;
+}
+
+#bankBalance {
+  font-weight: bold;
+}
+
+#ethExchange {
+  font-weight: 500;
+  margin: 25px;
 }
 
 #member_list {
