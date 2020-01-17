@@ -105,7 +105,7 @@ body {
     a {
       color: inherit;
     }
-    padding: 20px 0 20px 0;
+    padding: 20px 0 20px 50px;
     margin: auto;
   }
   .dropdown {
@@ -173,19 +173,15 @@ body {
   }
 
 #homeSegment1 {
-  height: 250px;
+  height: 260px;
   width: 88%;
 }
 
 #homeSegment2 {
   margin-top: 30px;
-  padding: 45px;
-  height: 170px;
+  padding: 40px;
+  height: 155px;
   text-align: center;
-  width: 88%;
-}
-
-#menu {
   width: 88%;
 }
   
@@ -241,17 +237,47 @@ body {
 
 
 #mainHeader {
-  padding: 25px;
+  padding: 28px;
   margin-bottom: 0;
+  letter-spacing: .10em;
+
+   text-shadow:
+    -1px 2px 1px #bdbdbd48, 
+    -2px 4px 1px #bdbdbd3b, 
+   
 }
 
 #bankBalance {
   font-weight: bold;
+  letter-spacing: .15em;
+
+  text-shadow: 
+    -1px 2px 1px #bdbdbd48, 
+    -2px 4px 1px #bdbdbd42, 
+    -3px 6px 1px #bdbdbd36,
+    -4px 8px 1px #bdbdbd15, 
+}
+
+
+#navigation {
+  margin: -5px;
+  padding: 0;
+}
+
+#navElement1 {
+  margin-left: 130px;
+  width: 15%;
+}
+
+#navElement2 {
+  width: 15%;
 }
 
 #ethExchange {
+  color: rgba(144, 145, 151, 0.507);
   font-weight: 500;
   margin: 25px;
+  letter-spacing: .15em;
 }
 
 #member_list {

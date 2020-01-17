@@ -41,20 +41,26 @@ const Home = () => {
 
   return (
     <div id="homepage">
-       <div id="menu">
-        <div class="ui pointing secondary menu">
-          <NumMembers class="item"/>
-          <NumProposals class="item"/>
-        </div>
-       </div>
+       <Grid.Column width={4} id="navigation">
+            <Grid container doubling stackable columns={4} padded textAlign="center" >
+              <Grid.Column></Grid.Column>
+              <Grid.Column></Grid.Column>
+              <Grid.Column id="navElement1">
+                <NumMembers />
+              </Grid.Column>
+              <Grid.Column id="navElement2">
+                <NumProposals />
+              </Grid.Column>
+            </Grid>
+          </Grid.Column>
 
-      <Segment raised id="homeSegment1">
+      <Segment id="homeSegment1">
       <Grid container textAlign="center">
         <Grid container doubling stackable columns="equal" padded>
           <Grid.Column>
             <Grid.Row className="guild_value" textAlign="center">
                 <Statistic>
-                  <h1 id="mainHeader">Total Guild Bank Balance</h1>
+                  <h1 id="mainHeader">TOTAL GUILD BANK BALANCE</h1>
                   <Statistic.Value id="bankBalance">
                     {convertWeiToDollars(guildBankValue, exchangeRate)} USD
                   </Statistic.Value>
@@ -66,7 +72,7 @@ const Home = () => {
       </Grid>
       </Segment>
       
-      <Segment raised id="homeSegment2">
+      <Segment id="homeSegment2">
         <Grid container doubling stackable columns={2}>
           <Grid.Column textAlign="center">
             <Statistic label="Total Shares" value={totalShares} />
