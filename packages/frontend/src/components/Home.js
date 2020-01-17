@@ -1,26 +1,9 @@
 import React from "react";
-import { Grid, Button, Statistic, Loader, Segment,Icon,} from "semantic-ui-react";
-import { Link } from "react-router-dom";
+import { Grid, Statistic, Loader, Segment,Icon,} from "semantic-ui-react";
 import { useQuery } from "react-apollo";
 import { utils } from "ethers";
 import { convertWeiToDollars, getShareValue } from "../helpers/currency";
 import gql from "graphql-tag";
-
-const NumMembers = () => (
-  <Link to="/members" className="link">
-    <Button color="grey" size="medium" fluid>
-      Members
-    </Button>
-  </Link>
-);
-
-const NumProposals = () => (
-  <Link to="/proposals" className="link">
-    <Button color="grey" size="medium" fluid>
-      Proposals
-    </Button>
-  </Link>
-);
 
 const GET_METADATA = gql`
   {
@@ -41,18 +24,7 @@ const Home = () => {
 
   return (
     <div id="homepage">
-       <Grid.Column width={4} id="navigation">
-            <Grid container doubling stackable columns={4} padded textAlign="center" >
-              <Grid.Column></Grid.Column>
-              <Grid.Column></Grid.Column>
-              <Grid.Column id="navElement1">
-                <NumMembers />
-              </Grid.Column>
-              <Grid.Column id="navElement2">
-                <NumProposals />
-              </Grid.Column>
-            </Grid>
-          </Grid.Column>
+
 
       <Segment id="homeSegment1">
       <Grid container textAlign="center">
@@ -60,7 +32,7 @@ const Home = () => {
           <Grid.Column>
             <Grid.Row className="guild_value" textAlign="center">
                 <Statistic>
-                  <h1 id="mainHeader">TOTAL GUILD BANK BALANCE</h1>
+                  <h1 id="mainHeader">GUILD BANK BALANCE</h1>
                   <Statistic.Value id="bankBalance">
                     {convertWeiToDollars(guildBankValue, exchangeRate)} USD
                   </Statistic.Value>
@@ -75,13 +47,20 @@ const Home = () => {
       <Segment id="homeSegment2">
         <Grid container doubling stackable columns={2}>
           <Grid.Column textAlign="center">
-            <Statistic label="Total Shares" value={totalShares} />
+            <Statistic>
+              <Statistic.Value id="subValue">
+                {totalShares}
+              </Statistic.Value>
+              <h4 id="subText">TOTAL SHARES</h4>
+            </Statistic>
           </Grid.Column>
           <Grid.Column textAlign="center">
-            <Statistic
-              label="Share Value"
-              value={convertWeiToDollars(shareValue, exchangeRate)}
-            />
+            <Statistic>
+              <Statistic.Value id="subValue">
+                {convertWeiToDollars(shareValue, exchangeRate)}
+              </Statistic.Value>
+              <h4 id="subText">SHARE VALUE</h4>
+            </Statistic>
           </Grid.Column>
         </Grid>
       </Segment>

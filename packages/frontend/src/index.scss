@@ -87,7 +87,7 @@ body {
 }
 
 #header {
-  height: 20px;
+  height: 80px;
   width: 100%;
   color: rgb(10, 1, 48) !important;
   margin-top: 20px;
@@ -240,37 +240,26 @@ body {
   padding: 28px;
   margin-bottom: 0;
   letter-spacing: .10em;
-
-   text-shadow:
-    -1px 2px 1px #bdbdbd48, 
-    -2px 4px 1px #bdbdbd3b, 
-   
 }
 
 #bankBalance {
   font-weight: bold;
   letter-spacing: .15em;
+  color: rgb(10, 1, 48) !important;
 
   text-shadow: 
-    -1px 2px 1px #bdbdbd48, 
-    -2px 4px 1px #bdbdbd42, 
-    -3px 6px 1px #bdbdbd36,
-    -4px 8px 1px #bdbdbd15, 
-}
-
-
-#navigation {
-  margin: -5px;
-  padding: 0;
+    -1px 2px 1px #bdbdbd1c, 
+    -2px 4px 1px #bdbdbd1c, 
+    -3px 6px 1px #bdbdbd1c,
 }
 
 #navElement1 {
-  margin-left: 130px;
-  width: 15%;
+  margin-left: 80px;
+  width: 17%;
 }
 
 #navElement2 {
-  width: 15%;
+  width: 17%;
 }
 
 #ethExchange {
@@ -278,6 +267,16 @@ body {
   font-weight: 500;
   margin: 25px;
   letter-spacing: .15em;
+}
+
+#subValue {
+  font-weight: 600;
+  color: rgb(10, 1, 48) !important;
+}
+
+#subText {
+  margin-top: 5px;
+  color: rgba(144, 145, 151, 0.507);
 }
 
 #member_list {
