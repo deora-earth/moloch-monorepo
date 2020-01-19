@@ -137,6 +137,7 @@ body {
       }
       .button {
         padding: 10px 20px !important;
+        margin-top: 5px;
       }
       .item {
         padding: 15px 10px !important;
@@ -151,7 +152,6 @@ body {
       }
 
       .link:hover {
-        border-bottom: 1px solid rgb(10, 1, 48);
         color:  rgb(53, 36, 133);
         cursor: pointer;
       }
@@ -162,6 +162,7 @@ body {
     }
   }
 }
+
 
 #wrapper {
   margin: auto;
@@ -456,6 +457,10 @@ body {
 
     .item {
       color: rgb(10, 1, 48);
+    }
+
+    .item:hover {
+      color: rgb(53, 36, 133) !important;
     }
 
     .active.item {

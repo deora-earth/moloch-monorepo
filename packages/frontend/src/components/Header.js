@@ -31,7 +31,7 @@ const MainMenu = ({
   <div className="dropdownItems">
     <Dropdown.Item
       icon="settings"
-      className="item"
+      className="link item"
       content="DAI Center"
       onClick={() => {
         _handleOpenDropdown();
@@ -41,7 +41,7 @@ const MainMenu = ({
     <Dropdown.Divider />
     {member && member.isActive ? (
       <>
-        <Dropdown.Item className="item" onClick={() => _handleCloseDropdown()}>
+        <Dropdown.Item pointing className='item' onClick={() => _handleCloseDropdown()}>
           <Link to={`/members/${member.id}`} className="link">
             <p>
               <Icon name="user" />
@@ -62,7 +62,7 @@ const MainMenu = ({
         <Dropdown.Divider />
         <Dropdown.Item
           icon="dollar"
-          className="item"
+          className='item'
           content="Ragequit"
           onClick={() => {
             _handleOpenDropdown();
@@ -93,7 +93,6 @@ const MainMenu = ({
     <Dropdown.Item className="item">
       <Link
         to="/login"
-        className="link"
         onClick={async () => {
           _handleCloseDropdown();
           window.localStorage.setItem("loggedInUser", "");
@@ -101,7 +100,7 @@ const MainMenu = ({
           window.location.reload();
         }}
       >
-        <p>
+        <p className="link">
           <Icon name="power off" />
           Sign Out
         </p>
@@ -120,7 +119,7 @@ const ChangeDelegateKeyMenu = ({ moloch, onLoadMain }) => {
   }, [newDelegateKey, moloch]);
 
   return (
-    <div>
+    <>
       <Dropdown.Item
         icon="arrow left"
         className="item"
@@ -128,7 +127,7 @@ const ChangeDelegateKeyMenu = ({ moloch, onLoadMain }) => {
         onClick={() => onLoadMain()}
       />
       <Dropdown.Divider />
-      <Dropdown.Item className="item submenu">
+      <Dropdown.Item className="item">
         <p>
           <Icon name="key" />
           Change Delegate Key
@@ -138,9 +137,9 @@ const ChangeDelegateKeyMenu = ({ moloch, onLoadMain }) => {
           onChange={event => setNewDelegateKey(event.target.value)}
           value={newDelegateKey}
         />
-        <Button onClick={submitChangeDelegateKey}>Save</Button>
+        <Button className="grey" onClick={submitChangeDelegateKey}>Save</Button>
       </Dropdown.Item>
-    </div>
+    </>
   );
 };
 
@@ -153,7 +152,7 @@ const WithdrawLootTokenMenu = ({ moloch, member, onLoadMain }) => {
   }, [ragequitAmount, moloch]);
 
   return (
-    <div>
+    <>
       <Dropdown.Item
         icon="arrow left"
         className="item"
@@ -164,17 +163,16 @@ const WithdrawLootTokenMenu = ({ moloch, member, onLoadMain }) => {
       <Dropdown.Item className="item submenu">
         <p>
           <Icon name="dollar" />
-          Ragequit
+          Ragequit -  {`${member.shares} Shares Available`}
         </p>
-        {`${member.shares} Shares Available`}
         <Form.Input
           placeholder={`Number of shares`}
           onChange={event => setRagequitAmount(event.target.value)}
           value={ragequitAmount}
         />
-        <Button onClick={submitRagequit}>Withdraw</Button>
+        <Button className="grey" onClick={submitRagequit}>Withdraw</Button>
       </Dropdown.Item>
-    </div>
+    </>
   );
 };
 
@@ -187,7 +185,7 @@ const WithdrawPoolTokenMenu = ({ pool, poolMember, onLoadMain }) => {
   }, [withdrawAmount, pool]);
 
   return (
-    <div>
+    <>
       <Dropdown.Item
         icon="arrow left"
         className="item"
@@ -208,7 +206,7 @@ const WithdrawPoolTokenMenu = ({ pool, poolMember, onLoadMain }) => {
         />
         <Button onClick={submitPoolWithdraw}>Withdraw</Button>
       </Dropdown.Item>
-    </div>
+    </>
   );
 };
 
@@ -255,7 +253,7 @@ function ApproveWethMenu({ token, eth, onLoadMain, loggedInUser }) {
           value={approval}
         />
         <Button.Group>
-          <Button onClick={approve}>Approve Rosebud</Button>
+          <Button className="grey" onClick={approve}>Approve Rosebud</Button>
         </Button.Group>
       </Dropdown.Item>
     </>
