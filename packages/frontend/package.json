@@ -1,5 +1,5 @@
 {
-  "name": "molochui",
+  "name": "RosebudUI",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -56,5 +56,5 @@
     "gh-pages": "2.1.1",
     "prettier": "1.18.2"
   },
-  "homepage": "https://molochdao.com"
+  "homepage": "https://deora.earth"
 }

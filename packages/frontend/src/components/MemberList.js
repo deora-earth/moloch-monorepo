@@ -3,7 +3,6 @@ import { Grid, Image, Divider } from "semantic-ui-react";
 import { Switch, Route, Link } from "react-router-dom";
 
 import MemberDetail from "./MemberDetail";
-import bull from "assets/bull.png";
 import user from "assets/user.png";
 
 import { useQuery } from "react-apollo";
@@ -44,7 +43,7 @@ const LoggedInUser = ({ loggedInUser }) => {
   return member && member.isActive ? (
     <ProfileHover address={loggedInUser} noTheme>
       <Link to={`/members/${member.id}`} className="uncolored">
-        <Image centered src={bull} size="tiny" />
+        <Image centered src={user} size="tiny" />
         <p className="name">
           {!member.id ? "" : member.id.length > 10 ? member.id.substring(0, 10) + "..." : member.id}
         </p>
@@ -129,7 +128,7 @@ const MemberList = props => {
           textAlign="left"
           className="member_list_header"
         >
-          <p className="subtext">{members} Members</p>
+          <p className="subtext">{members} registerd members</p>
         </Grid.Column>
       </Grid>
 

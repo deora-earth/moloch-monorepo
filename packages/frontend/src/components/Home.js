@@ -24,10 +24,8 @@ const Home = () => {
 
   return (
     <div id="homepage">
-
-
-      <Segment id="homeSegment1">
       <Grid container textAlign="center">
+      <Segment id="homeSegment1">
         <Grid container doubling stackable columns="equal" padded>
           <Grid.Column>
             <Grid.Row className="guild_value" textAlign="center">
@@ -41,8 +39,7 @@ const Home = () => {
             </Grid.Row>
           </Grid.Column>
         </Grid>
-      </Grid>
-      </Segment>
+        </Segment>
       
       <Segment id="homeSegment2">
         <Grid container doubling stackable columns={2}>
@@ -64,6 +61,7 @@ const Home = () => {
           </Grid.Column>
         </Grid>
       </Segment>
+    </Grid>
     </div>
   );
 };

@@ -67,7 +67,7 @@ class SubmitModal extends Component {
       <Modal
         trigger={
           <Button size="large" color="red" onClick={this.handleOpen}>
-            Submit Proposal
+            Submit a new proposal
           </Button>
         }
         basic
@@ -85,7 +85,7 @@ class SubmitModal extends Component {
               ) : (
                 <List.Icon name="x" />
               )}
-              <List.Content>{DEPOSIT_WETH} wETH Deposit Approved</List.Content>
+              <List.Content>{DEPOSIT_WETH} DAI Deposit Approved</List.Content>
             </List.Item>
             <List.Item>
               {loading ? (
@@ -282,7 +282,6 @@ export default class ProposalSubmission extends Component {
                   name="title"
                   transparent
                   size="big"
-                  inverted
                   placeholder="Proposal Title"
                   onChange={this.handleInput}
                   value={title}

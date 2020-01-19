@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Grid, Icon, Dropdown, Form, Button, Loader, Menu } from "semantic-ui-react";
+import { Icon, Dropdown, Form, Button, Loader,Menu} from "semantic-ui-react";
 import { withApollo, useQuery } from "react-apollo";
 import { GET_MEMBER_DETAIL } from "../helpers/graphQlQueries";
 import {
@@ -16,21 +16,6 @@ import { monitorTx } from "../helpers/transaction";
 import { formatEther } from "ethers/utils";
 import gql from "graphql-tag";
 
-const NumMembers = () => (
-  <Link to="/members" className="link">
-    <Button color="grey" size="medium" fluid>
-      Members
-    </Button>
-  </Link>
-);
-
-const NumProposals = () => (
-  <Link to="/proposals" className="link">
-    <Button color="grey" size="medium" fluid>
-      Proposals
-    </Button>
-  </Link>
-);
 
 const MainMenu = ({
   _handleOpenDropdown,
@@ -362,23 +347,6 @@ export default ({ loggedInUser, client }) => {
     init();
   }, [loggedInUser]);
 
-
-  const NumMembers = () => (
-    <Link to="/members" className="link">
-      <Button color="grey" size="medium" fluid>
-        Members
-      </Button>
-    </Link>
-  );
-  
-  const NumProposals = () => (
-    <Link to="/proposals" className="link">
-      <Button color="grey" size="medium" fluid>
-        Proposals
-      </Button>
-    </Link>
-  );
-
   const _handleOpenDropdown = () => setVisibleRightMenu(true);
 
   const _handleCloseDropdown = () => setVisibleRightMenu(false);
@@ -506,16 +474,57 @@ export default ({ loggedInUser, client }) => {
     },
   );
 
+  const NumHome = () => (
+    <Link to="/" className="navElement" activeClassName='navElementActive'>
+      <h3>
+        Home
+      </h3>
+    </Link>
+  );
+
+
+  const NumMembers = () => (
+    <Link to="/members" className="navElement" activeClassName='navElementActive'>
+      <h3>
+        Members
+      </h3>
+    </Link>
+  );
+
+  const NumProposal = () => (
+    <Link to="/proposals" className="navElement" activeClassName='navElementActive'>
+      <h3>
+        Proposals
+      </h3>
+    </Link>
+  );
+
   if (memberLoading || poolLoading) return <Loader active />;
   if (memberError || poolError) throw new Error(`Error!: ${memberError} ${poolError}`);
   return (
     <div id="header">
-      <Grid container columns={2} stackable verticalAlign="center">
-        <Grid.Column textAlign="left" className="logo">
-          <Link to="/">ROSEBUD DAO</Link>
-        </Grid.Column>
-        <Grid.Column textAlign="right" className="dropdown">
-          <Dropdown
+      <Menu>
+        <Menu.Item header>
+          <Link to="/" className="logo"> Rosebud DAO</Link>
+        </Menu.Item>
+        <Menu.Item 
+          name='Home'
+        >
+          <NumHome />
+        </Menu.Item>
+        <Menu.Item 
+          name='Members'
+        >
+          <NumMembers />
+        </Menu.Item>
+        <Menu.Item  
+          name='Proposals'
+        >
+          <NumProposal />
+        </Menu.Item>
+
+        <Menu.Menu position='right'>
+        <Dropdown item
             className="right_dropdown"
             open={visibleRightMenu}
             onBlur={() => _handleCloseDropdown()}
@@ -526,22 +535,8 @@ export default ({ loggedInUser, client }) => {
               {getTopRightMenuContent(memberData.member, poolMemberData.poolMember)}
             </Dropdown.Menu>
           </Dropdown>
-        </Grid.Column>
-      </Grid>
-
-      <Grid.Column width={4}>
-            <Grid container doubling stackable columns={4} padded textAlign="center" >
-              <Grid.Column></Grid.Column>
-              <Grid.Column></Grid.Column>
-              <Grid.Column id="navElement1">
-                <NumMembers />
-              </Grid.Column>
-              <Grid.Column id="navElement2">
-                <NumProposals />
-              </Grid.Column>
-            </Grid>
-      </Grid.Column>
-
+        </Menu.Menu>
+      </Menu>
     </div>
   );
 };

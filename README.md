@@ -1,4 +1,4 @@
-# moloch-monorepo
+# Rosebud DAO
 
 ## Local Dev Instructions
 
