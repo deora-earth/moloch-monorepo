@@ -63,7 +63,7 @@ body {
 }
 
 .blurred {
-  background: #ececec !important;
+  background: #white !important;
 }
 
 .transparent {
@@ -90,10 +90,7 @@ body {
 
 .navElement {
   color: rgb(10, 1, 48) !important;
-  font-weight: bolder;
-  margin-left: 0px;
-  font-size: 16px !important;
-  letter-spacing: 0.08em;
+    font-size: 18px !important;
 }
 
 .navElement:hover {
@@ -105,7 +102,7 @@ body {
   height: 90px;
   width: 100%;
   color: rgb(10, 1, 48) !important;
-  margin-top: 40px;
+  margin-top: 50px;
 
   .menu {
     font-size: 18px;
@@ -116,10 +113,11 @@ body {
     color: rgb(10, 1, 48) !important;
   }
   .logo {
-    font-size: 25px;
+    font-size: 20px;
     text-decoration: none;
     color: rgb(10, 1, 48) !important;
     font-weight: 600;
+    letter-spacing: 0.08em;
     a {
       color: inherit;
     }
@@ -135,6 +133,7 @@ body {
       input {
         color: rgb(10, 1, 48);
         margin-bottom: 5px;
+        border-color:lightgray;
       }
       .button {
         padding: 10px 20px !important;
@@ -211,6 +210,7 @@ body {
   width: 100%;
   margin-top: 25px;
 }
+
   
   @media screen and (min-width: 320px) and (max-width: 375px) { 
     .btn_link {
@@ -233,6 +233,7 @@ body {
     .blurred {
       padding-left: 10px !important;
       padding-right: 10px !important;
+      background-color: white;
     }
   }
   
@@ -619,24 +620,38 @@ body {
 }
 
 #proposal_submission {
+
   input, textarea, select, .dropdown {
-    background-color: whitesmoke;
-    color: rgb(10, 1, 48) !important;
+    background-color: white;
+    color: rgb(53, 36, 133) !important;
+    border-color: lightgray ; 
+    font-size: 18px;
   }
   label {
     color: rgb(10, 1, 48) !important;
-    font-weight: 600;
+    font-weight: 600 !important;
+    font-size: 18px !important;
+    padding: 5px;
   }
   i {
     float: left !important;
   }
+  ::placeholder {
+    color: lightgray !important;
+  }
+
+  #titleInput {
+    font-weight: 600;
+    font-size: 20px;
+  }
+
   .amount {
     font-size: 25px;
     line-height: 15px;
   }
   .blurred.box {
     height: 100%;
-    background-color: whitesmoke;
+    background-color: white;
   }
   .delete_icon {
     margin-top: 8px;
@@ -649,6 +664,7 @@ body {
   }
   .submit_button {
     text-align: center !important;
+    margin: 10px;
   }
   
   .computer_delete_icon {
@@ -687,6 +703,7 @@ body {
     .blurred.box {
       padding-left: 20px !important;
       padding-right: 20px !important;
+      background-color: white;
     }
 
     .asset_field_grid {

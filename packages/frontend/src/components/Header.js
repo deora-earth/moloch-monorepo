@@ -32,7 +32,7 @@ const MainMenu = ({
     <Dropdown.Item
       icon="settings"
       className="item"
-      content="wETH Center"
+      content="DAI Center"
       onClick={() => {
         _handleOpenDropdown();
         onLoadApproveWeth();
@@ -214,46 +214,16 @@ const WithdrawPoolTokenMenu = ({ pool, poolMember, onLoadMain }) => {
 
 function ApproveWethMenu({ token, eth, onLoadMain, loggedInUser }) {
   const [approval, setApproval] = useState("");
-  const [wrap, setWrap] = useState("");
-  const [unwrap, setUnwrap] = useState("");
   const [myWeth, setMyWeth] = useState("...");
-  const [myEth, setMyEth] = useState("...");
 
   const approve = useCallback(() => {
     console.log(
-      "Approving wETH: ",
+      "Approving DAI: ",
       process.env.REACT_APP_MOLOCH_ADDRESS,
       utils.parseEther(approval).toString(),
     );
     monitorTx(token.approve(process.env.REACT_APP_MOLOCH_ADDRESS, utils.parseEther(approval)));
   }, [approval, token]);
-
-  const approvePool = useCallback(() => {
-    console.log(
-      "Approving wETH: ",
-      process.env.REACT_APP_MOLOCH_POOL_ADDRESS,
-      utils.parseEther(approval).toString(),
-    );
-    monitorTx(token.approve(process.env.REACT_APP_MOLOCH_POOL_ADDRESS, utils.parseEther(approval)));
-  }, [approval, token]);
-
-  const wrapEth = useCallback(() => {
-    console.log(
-      "Wrapping ETH: ",
-      process.env.REACT_APP_TOKEN_ADDRESS,
-      utils.parseEther(wrap).toString(),
-    );
-    monitorTx(token.deposit({ value: utils.parseEther(wrap) }));
-  }, [wrap, token]);
-
-  const unwrapWeth = useCallback(() => {
-    console.log(
-      "Unwrapping wETH: ",
-      process.env.REACT_APP_TOKEN_ADDRESS,
-      utils.parseEther(unwrap).toString(),
-    );
-    monitorTx(token.withdraw(utils.parseEther(unwrap)));
-  }, [unwrap, token]);
 
   useEffect(() => {
     async function fetchMyWeth() {
@@ -264,16 +234,6 @@ function ApproveWethMenu({ token, eth, onLoadMain, loggedInUser }) {
     }
     fetchMyWeth();
   }, [token, loggedInUser]);
-
-  useEffect(() => {
-    async function fetchMyEth() {
-      if (loggedInUser) {
-        const e = await eth.getBalance(loggedInUser);
-        setMyEth(parseFloat(formatEther(e)).toFixed(2));
-      }
-    }
-    fetchMyEth();
-  }, [eth, loggedInUser]);
 
   return (
     <>
@@ -287,30 +247,15 @@ function ApproveWethMenu({ token, eth, onLoadMain, loggedInUser }) {
       <Dropdown.Item className="item submenu">
         <p>
           <Icon name="settings" />
-          wETH Center
+          DAI Center
         </p>
         <Form.Input
-          placeholder={`${myWeth} wETH available`}
+          placeholder={`${myWeth} DAI available`}
           onChange={event => setApproval(event.target.value)}
           value={approval}
         />
         <Button.Group>
-          <Button onClick={approve}>Approve Moloch</Button>
-          <Button onClick={approvePool}>Approve Pool</Button>
-        </Button.Group>
-        <Form.Input
-          placeholder={`${myEth} ETH available`}
-          onChange={event => setWrap(event.target.value)}
-          value={wrap}
-        />
-        <Button onClick={wrapEth}>Wrap</Button>
-        <Form.Input
-          placeholder={`${myWeth} wETH available`}
-          onChange={event => setUnwrap(event.target.value)}
-          value={unwrap}
-        />
-        <Button.Group>
-          <Button onClick={unwrapWeth}>Unwrap</Button>
+          <Button onClick={approve}>Approve Rosebud</Button>
         </Button.Group>
       </Dropdown.Item>
     </>
@@ -383,7 +328,7 @@ export default ({ loggedInUser, client }) => {
               onLoadChangeDelegateKey={() => setVisibleMenu("changeDelegateKey")}
               onLoadWithdrawLootToken={() => setVisibleMenu("withdrawLootToken")}
               onLoadWithdrawPoolToken={() => setVisibleMenu("withdrawPoolToken")}
-              onLoadApproveWeth={() => setVisibleMenu("approveWeth")}
+              onLoadApproveWeth={() => setVisibleMenu("approveDAI")}
             />
           );
           break;
@@ -422,7 +367,7 @@ export default ({ loggedInUser, client }) => {
             />
           );
           break;
-        case "approveWeth":
+        case "approveDAI":
           topRightMenuContent = (
             <ApproveWethMenu
               onLoadMain={() => {
@@ -476,26 +421,26 @@ export default ({ loggedInUser, client }) => {
 
   const NumHome = () => (
     <Link to="/" className="navElement" activeClassName='navElementActive'>
-      <h3>
+      <p>
         Home
-      </h3>
+      </p>
     </Link>
   );
 
 
   const NumMembers = () => (
     <Link to="/members" className="navElement" activeClassName='navElementActive'>
-      <h3>
+      <p>
         Members
-      </h3>
+      </p>
     </Link>
   );
 
   const NumProposal = () => (
     <Link to="/proposals" className="navElement" activeClassName='navElementActive'>
-      <h3>
+      <p>
         Proposals
-      </h3>
+      </p>
     </Link>
   );
 
@@ -505,7 +450,7 @@ export default ({ loggedInUser, client }) => {
     <div id="header">
       <Menu>
         <Menu.Item header>
-          <Link to="/" className="logo"> Rosebud DAO</Link>
+          <Link to="/" className="logo"> ROSEBUD DAO</Link>
         </Menu.Item>
         <Menu.Item 
           name='Home'
