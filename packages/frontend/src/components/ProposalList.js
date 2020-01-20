@@ -211,7 +211,7 @@ const ProposalList = ({ isActive }) => {
   const readyForProcessing = proposals
     .filter(p => p.status === ProposalStatus.ReadyForProcessing)
     .sort(sortProposals);
-
+  
   const panes = [
     {
       menuItem: `Voting Period (${votingPeriod.length})`,
@@ -325,12 +325,13 @@ const ProposalList = ({ isActive }) => {
   return (
     <div id="proposal_list">
       <>
-        <Grid columns={16} verticalAlign="middle">
+        <Grid columns={16} verticalAlign="middle" >
           <Grid.Column
             mobile={16}
             tablet={8}
             computer={4}
             textAlign="right"
+            id="proposalWidth"
           >
           </Grid.Column>
         </Grid>
