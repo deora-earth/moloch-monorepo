@@ -4,6 +4,7 @@ import { Route, Switch, Link } from "react-router-dom";
 
 import ProposalDetail from "./ProposalDetail";
 import ProgressBar from "./ProgressBar";
+import ProposalSubmission from "./ProposalSubmission";
 import { useQuery } from "react-apollo";
 import { ProposalStatus, getProposalCountdownText } from "../helpers/proposals";
 import { utils } from "ethers";
@@ -16,7 +17,7 @@ const ProposalCard = ({ proposal }) => {
   return (
     <Grid.Column mobile={16} tablet={8} computer={5}>
       <Link to={{ pathname: `/proposals/${id}` }} className="uncolored">
-        <Segment>
+        <Segment raised>
           <p className="name">{proposal.title ? proposal.title : "N/A"}</p>
           <p className="subtext description">
             {proposal.description ? proposal.description : "N/A"}
@@ -305,8 +306,21 @@ const ProposalList = ({ isActive }) => {
           )}
         </Tab.Pane>
       ),
+    },        
+    {
+      menuItem: <Button size="medium" color="grey" id="newPorposalButton">
+                  New Proposal
+                </Button>,
+      render: () => (
+        <Tab.Pane attached={false}>
+          <Grid columns={3}>
+            <ProposalSubmission />
+          </Grid>
+        </Tab.Pane>
+      ),
     },
   ];
+
 
   return (
     <div id="proposal_list">
@@ -317,18 +331,11 @@ const ProposalList = ({ isActive }) => {
             tablet={8}
             computer={4}
             textAlign="right"
-            floated="right"
-            className="submit_button"
           >
-            <Link to={isActive ? "/proposalsubmission" : "/proposals"} className="link">
-              <Button size="large" color="red" disabled={!isActive}>
-                New Proposal
-              </Button>
-            </Link>
           </Grid.Column>
         </Grid>
-        <Tab menu={{ secondary: true, pointing: true }} panes={panes} />
-      </>
+        <Tab menu={{ text: true }} panes={panes} />        
+        </>
     </div>
   );
 };

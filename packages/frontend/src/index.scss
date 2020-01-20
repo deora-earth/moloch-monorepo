@@ -39,11 +39,11 @@ body {
 }
 
 .button {
-  padding: 20px 5px !important;
+  padding: 10px 15px !important;
   color: whitesmoke !important;
   &.grey {
     background: rgb(10, 1, 48) !important;
-    border-radius: 5px;
+    border-radius: 3px;
   }
 }
 
@@ -303,8 +303,9 @@ body {
 }
 
 #member_list {
+  margin-top: -20px !important ;
   .name {
-    margin: 10px 60px 0;
+    margin: 10px 30px 0;
     color: rgb(10, 1, 48) !important;
   }
   .divider {
@@ -319,7 +320,7 @@ body {
   .member_avatar {
     margin-top: 25px;
   }
-  
+
   @media screen and (min-width: 320px) and (max-width: 375px) { 
   
     .submit_button, .member_list_header {
@@ -333,16 +334,24 @@ body {
       text-align: center !important;
     }
   }
+}
 
+#EldersSegment {
+  padding: 30px 20px 50px;
+  margin-top: -10px;
+}
+
+#ContributorsSegment {
+  padding: 30px 20px 50px;
 }
 
 #member_detail {
   .details {
-    margin-top: 20px;
+    margin-top: 10px;
     color: rgb(10, 1, 48) !important;
   }
   .blurred.box {
-    padding: 30px 60px;
+    padding: 20px 60px;
   }
   .amount {
     font-size: 25px;
@@ -420,20 +429,19 @@ body {
   .description {
     font-weight: 500;
     font-size: 15px;
-    padding-top: 10px;
-    padding-bottom: 20px;
-    height: 20vh;
+    margin-bottom: 25px;
+    margin-top: -10px;
+    height: 15vh;
     overflow-y: auto;
   }
   .value_shares {
-    padding-left: 20px;
-    padding-right: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
     .amount {
       font-size: 25px;
       line-height: 15px;
     }
-
-    margin-bottom: 30px;
+    margin-bottom: -15px;
   }
   .deadlines {
     margin: 30px auto;
@@ -443,8 +451,12 @@ body {
     }
   }
   .progress .bar {
-    border-radius: 20px;
+    border-radius: 3px;
   }
+
+  #newPorposalButton {
+    margin-left: 39%;;
+    }
 
   .ui.secondary.menu {
     overflow: scroll;
@@ -473,8 +485,7 @@ body {
   }
 
   .ui.segment.active.tab {
-    background: transparent;
-    border-width: 0px;
+    padding: 30px;
   }
 
   .ui.small.progress.hide-bar {
@@ -485,20 +496,24 @@ body {
   
   @media only screen and (min-width: 320px) and (max-width: 374px) {
     .blurred.box { padding: 30px 7px; }
+    #newPorposalButton { margin-left: 0;}
   }
 
   @media only screen and (min-width: 375px) and (max-width: 424px) {
     .blurred.box { padding: 30px 15px; }
+    #newPorposalButton { margin-left: 0;}
   }
 
   @media only screen and (min-width: 320px) and (max-width: 425px) {
     .pill { padding: 8px 10px !important; }
+    #newPorposalButton { margin-left: 0;}
+
   }
 }
 
 #proposal_detail {
   .title {
-    margin-bottom: 80px;
+    margin-bottom: 50px;
   }
   .tokens {
     margin: 30px auto;
@@ -510,6 +525,7 @@ body {
   .address {
     font-size: 20px;
     line-height: 15px;
+    color: rgb(10, 1, 48);
   }
   .grace {
     opacity: 0.5;
@@ -521,24 +537,25 @@ body {
     .button {
       width: 60px ;
       padding: 22px ;
-      margin-top: 0.25em !important;
+      margin-top: 0.20em !important;
     }
   }
   .description {
     text-align: justify !important;
-    min-height: 20vh;
+    min-height: 12vh;
+    margin-top: 20px;
   }
 
   .member_list {
-    min-height: 25vh;
+    min-height: 20vh;
   }
   
   .member_avatar {
-    margin-top: 25px;
+    margin-top: 0px;
   }
 
   .btn {
-    min-width: 200px;
+    min-width: 100px;
   }
   
   .pill {
@@ -625,7 +642,7 @@ body {
 }
 
 #proposal_submission {
-
+  padding-top: 30px;
   input, textarea, select, .dropdown {
     background-color: white;
     color: rgb(53, 36, 133) !important;
@@ -669,7 +686,7 @@ body {
   }
   .submit_button {
     text-align: center !important;
-    margin: 10px;
+    padding-bottom: 10px;
   }
   
   .computer_delete_icon {
