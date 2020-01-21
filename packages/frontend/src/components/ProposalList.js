@@ -1,5 +1,5 @@
 import React from "react";
-import { Segment, Grid, Button, Tab, Icon, Loader } from "semantic-ui-react";
+import { Segment, Grid, Button, Tab, Loader, Divider, Label } from "semantic-ui-react";
 import { Route, Switch, Link } from "react-router-dom";
 
 import ProposalDetail from "./ProposalDetail";
@@ -18,35 +18,37 @@ const ProposalCard = ({ proposal }) => {
     <Grid.Column mobile={16} tablet={8} computer={5}>
       <Link to={{ pathname: `/proposals/${id}` }} className="uncolored">
         <Segment raised>
+          <Label as='a' color='white' ribbon>
+          {getProposalCountdownText(proposal)}
+        </Label>
           <p className="name">{proposal.title ? proposal.title : "N/A"}</p>
           <p className="subtext description">
             {proposal.description ? proposal.description : "N/A"}
           </p>
+          <Divider />
           <Grid columns="equal" className="value_shares">
             <Grid.Row>
-              <Grid.Column textAlign="center">
-                <p className="subtext">Shares Requested</p>
-                <p className="amount">{proposal.sharesRequested}</p>
-              </Grid.Column>
-              <Grid.Column textAlign="center">
+              <Grid.Column textAlign="left">
                 <p className="subtext">
-                  Tribute <Icon name="ethereum" />
+                  Tribute in DAI
                 </p>
+              </Grid.Column>
+              <Grid.Column>
                 <p className="amount">
                   {parseFloat(utils.formatEther(proposal.tokenTribute)).toFixed(2)}
                 </p>
               </Grid.Column>
             </Grid.Row>
-          </Grid>
-          <Grid columns="equal" className="deadlines">
             <Grid.Row>
-              <Grid.Column textAlign="center">
-                <Segment className="voting pill" textAlign="center">
-                  {getProposalCountdownText(proposal)}
-                </Segment>
+              <Grid.Column textAlign="left">
+                <p className="subtext">Shares Requested</p>
+              </Grid.Column>
+              <Grid.Column>
+                <p className="amount">{proposal.sharesRequested}</p>
               </Grid.Column>
             </Grid.Row>
           </Grid>
+          <Divider />
           {proposal.aborted ? (
             <Grid columns="equal" className="deadlines">
               <Grid.Row>

@@ -14,6 +14,10 @@ body {
 
 .subtext {
   color: rgb(10, 1, 48) !important;
+  width: 100% !important;
+}
+
+.row {
 }
 
 .subtitle {
@@ -59,7 +63,7 @@ body {
 }
 
 .uncolored {
-  color: rgb(49, 25, 155) !important;
+  color: rgb(10, 1, 48) !important;
 }
 
 .blurred {
@@ -418,6 +422,7 @@ body {
 
 #proposal_list {
   .name {
+    padding-top: 13px;
     font-size: 23px;
     color: rgb(10, 1, 48) !important;
     overflow-y: auto;
@@ -439,25 +444,33 @@ body {
   .description::-webkit-scrollbar {
     display: none;
   }
-  
+
   .value_shares {
-    padding-left: 10px;
-    padding-right: 10px;
     .amount {
-      font-size: 25px;
+      font-size: 20px;
       line-height: 15px;
+      padding-left: 70px;
+      padding-top: 3px;
     }
-    margin-bottom: -15px;
   }
   .deadlines {
-    margin: 30px auto;
-    .voting {}
+    margin-top: 15px  auto;
+    margin-bottom: 5px;
+    .voting {
+      border-radius: 3px !important;
+      width: 100% !important;
+    }
     .grace {
-      opacity: 0.5;
+        opacity: 0.5;
     }
   }
   .progress .bar {
     border-radius: 3px;
+  }
+
+  #amountYesNo {
+    margin-top: -10px !important;
+    padding: 18px 15px ;
   }
 
   #newPorposalButton {
@@ -530,6 +543,7 @@ body {
 #proposal_detail {
   .title {
     margin-bottom: 50px;
+    color: rgb(10, 1, 48) !important;
   }
   .tokens {
     margin: 30px auto;
