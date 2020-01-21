@@ -1,5 +1,5 @@
 import React, { useCallback, useState, useEffect } from "react";
-import { Grid, Icon, Segment, Button, Image, Loader } from "semantic-ui-react";
+import { Grid, Segment, Button, Image, Loader } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import hood from "assets/hood.png";
 import ProgressBar from "./ProgressBar";
@@ -147,7 +147,9 @@ const ProposalDetail = ({ loggedInUser, match }) => {
 
   return (
     <div id="proposal_detail">
-      <Grid container>
+      <Segment className="proposalView">
+
+      <Grid container  /*  TITLE */> 
         <Grid.Column>
           <Grid.Row>
             <span className="title">{proposal.title ? proposal.title : "N/A"}</span>
@@ -161,7 +163,8 @@ const ProposalDetail = ({ loggedInUser, match }) => {
           </Grid.Row>
         </Grid.Column>
       </Grid>
-      <Grid container stackable columns={2} divided>
+
+      <Grid container stackable columns={2} divided /*  Applicaln and Proposer */>
         <Grid.Column>
           <Grid container>
             <Grid container stackable columns={2} doubling>
@@ -178,21 +181,34 @@ const ProposalDetail = ({ loggedInUser, match }) => {
                 />
               </Grid.Column>
             </Grid>
-            <Grid.Row className="tributes">
-              <Segment className="pill" textAlign="center">
-                <Icon name="ethereum" />
-                {utils.formatEther(proposal.tokenTribute)} ETH
-              </Segment>
+
+            <Segment raised>
+            <Grid container columns={2}>
+            <Grid.Row className="tributes" /*  TITLE */>
+              <Grid.Column>
+                <p className="subtext voting">Tribute</p>
+              </Grid.Column>
+              <Grid.Column>
+                <p className="amount">{utils.formatEther(proposal.tokenTribute)} DAI</p>
+              </Grid.Column>
             </Grid.Row>
-            <Grid.Row>
+            </Grid>
+            <Grid.Row> 
               <Grid container columns={2}>
-                <Grid.Column>
-                  <p className="subtext voting">Shares</p>
-                  <p className="amount">{proposal.sharesRequested}</p>
-                </Grid.Column>
-                <Grid.Column textAlign="right">
-                  <p className="subtext">Total USD Value</p>
-                  <p className="amount">
+                <Grid.Row>
+                  <Grid.Column>
+                    <p className="subtext voting">Shares</p>
+                  </Grid.Column>
+                  <Grid.Column>
+                    <p className="amount">{proposal.sharesRequested}</p>
+                  </Grid.Column>
+                </Grid.Row>
+                <Grid.Row>
+                  <Grid.Column>
+                    <p className="subtext">Total USD Value</p>
+                  </Grid.Column>
+                  <Grid.Column>
+                    <p className="amount">
                     {convertWeiToDollars(
                       utils
                         .bigNumberify(proposal.sharesRequested)
@@ -201,11 +217,14 @@ const ProposalDetail = ({ loggedInUser, match }) => {
                       exchangeRate,
                     )}
                   </p>
-                </Grid.Column>
+                  </Grid.Column>
+                </Grid.Row>
               </Grid>
             </Grid.Row>
+            </Segment>
           </Grid>
         </Grid.Column>
+        
         <Grid.Column>
           <Grid container>
             <Grid.Row textAlign="center" className="pill_column">
@@ -277,6 +296,7 @@ const ProposalDetail = ({ loggedInUser, match }) => {
           </Grid>
         </Grid.Column>
       </Grid>
+      </Segment>
     </div>
   );
 };

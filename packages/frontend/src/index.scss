@@ -17,16 +17,13 @@ body {
   width: 100% !important;
 }
 
-.row {
-}
-
 .subtitle {
   font-size: 15px;
   color: rgb(10, 1, 48) !important;
 }
 
 .threeboxProfileHover__style_boxShortAddress {
-  color: white;
+  color: rgb(10, 1, 48);
 }
 
 .ui.statistic>.value, .ui.statistics .statistic>.value {
@@ -541,9 +538,11 @@ body {
 }
 
 #proposal_detail {
+  .proposalView {
+    padding: 40px 15px 30px !important;
+  }
   .title {
-    margin-bottom: 50px;
-    color: rgb(10, 1, 48) !important;
+    margin-bottom: 20px;
   }
   .tokens {
     margin: 30px auto;
@@ -606,6 +605,10 @@ body {
     .bar {
       background-color: transparent
     }
+  }
+  .subtext.description.wordwrap {
+    font-weight: 500 !important;
+    font-size: 15px;
   }
   
   @media screen and (min-width: 320px) and (max-width: 375px) { 

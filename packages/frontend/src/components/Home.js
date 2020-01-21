@@ -1,5 +1,5 @@
 import React from "react";
-import { Grid, Statistic, Loader, Segment,Icon,} from "semantic-ui-react";
+import { Grid, Statistic, Loader, Segment,} from "semantic-ui-react";
 import { useQuery } from "react-apollo";
 import { utils } from "ethers";
 import { convertWeiToDollars, getShareValue } from "../helpers/currency";
@@ -34,7 +34,7 @@ const Home = () => {
                   <Statistic.Value id="bankBalance">
                     {convertWeiToDollars(guildBankValue, exchangeRate)} USD
                   </Statistic.Value>
-                  <h2 id="ethExchange"><Icon name='ethereum' />{parseFloat(utils.formatEther(guildBankValue)).toFixed(4)} ETH</h2>
+                  <h2 id="ethExchange">{parseFloat(utils.formatEther(guildBankValue)).toFixed(3)} DAI</h2>
                 </Statistic>
             </Grid.Row>
           </Grid.Column>
