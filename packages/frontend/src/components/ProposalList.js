@@ -310,7 +310,7 @@ const ProposalList = ({ isActive }) => {
       ),
     },        
     {
-      menuItem: <Button size="medium" color="grey" id="newPorposalButton" to={isActive ? "/proposalsubmission" : "/proposals"}>
+      menuItem: <Button size="medium" color="grey" id="newPorposalButton" to={isActive ? "/proposalsubmission" : "/proposals"} disabled={!isActive}>
                   New Proposal
                 </Button>,
       render: () => (
