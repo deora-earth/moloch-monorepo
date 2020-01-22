@@ -15,6 +15,7 @@ body {
 .subtext {
   color: rgb(10, 1, 48) !important;
   width: 100% !important;
+  margin-top: -20px;
 }
 
 .subtitle {
@@ -538,17 +539,17 @@ body {
 }
 
 #proposal_detail {
-  .proposalView {
-    padding: 40px 15px 30px !important;
-  }
+  padding-top: 20px;
   .title {
-    margin-bottom: 20px;
+    margin-top: 25px !important;
+    margin-bottom: 10px;
   }
   .tokens {
     margin: 30px auto;
   }
   .amount {
-    font-size: 25px;
+    padding-top: 10px;
+    font-size: 20px;
     line-height: 15px;
   }
   .address {
