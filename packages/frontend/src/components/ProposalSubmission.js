@@ -10,7 +10,7 @@ import {
   Icon,
   List,
 } from "semantic-ui-react";
-import { getMoloch, getToken } from "../web3";
+import { getMoloch, getToken, } from "../web3";
 import { utils } from "ethers";
 import { monitorTx } from "helpers/transaction";
 
@@ -39,6 +39,9 @@ class SubmitModal extends Component {
     if (beneficiaryAllowance.gte(utils.parseEther(tribute))) {
       beneficiaryApproved = true;
     }
+
+    console.log(loggedInUser);
+    console.log(moloch.address);
 
     const depositAllowance = await token.allowance(loggedInUser, moloch.address);
     let depositApproved = false;
@@ -273,6 +276,7 @@ export default class ProposalSubmission extends Component {
       submittedTx,
     } = this.state;
     const { loggedInUser } = this.props;
+    console.log("bla", loggedInUser);
     return (
       <div id="proposal_submission">
         <Form>

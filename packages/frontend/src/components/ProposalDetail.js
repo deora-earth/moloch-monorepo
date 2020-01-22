@@ -1,5 +1,5 @@
 import React, { useCallback, useState, useEffect } from "react";
-import { Grid, Segment, Button, Image, Loader, Label } from "semantic-ui-react";
+import { Grid, Segment, Button, Image, Loader, Label, ButtonGroup, ButtonOr } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import hood from "assets/hood.png";
 import ProgressBar from "./ProgressBar";
@@ -169,8 +169,6 @@ const ProposalDetail = ({ loggedInUser, match }) => {
 
       <Grid container stackable columns={2} /*  Applicaln and Proposer */>
         <Grid.Column>
-            <h3>Proposal Details</h3>
-          <Grid container>
             <Grid container stackable columns={2} doubling>
               <Grid.Column>
                 <p className="subtext">Applicant/Beneficiary</p>
@@ -184,11 +182,10 @@ const ProposalDetail = ({ loggedInUser, match }) => {
                   url={`https://molochdao.com/members/${proposal.memberAddress}`}
                 />
               </Grid.Column>
-            </Grid>
 
-            <Segment raised className="amountDetails"/* Details Segment */ >
+            <Segment raised className="amountDetails" /* Details Segment */ >
 
-            <Grid container columns={2} /* Tribute Row */>
+            <Grid container columns={2} className="amountDetails" /* Tribute Row */>
                 <Grid.Row>
                   <Grid.Column>
                     <p className="amount">Tribute</p>
@@ -238,8 +235,8 @@ const ProposalDetail = ({ loggedInUser, match }) => {
         </Grid.Column>
 
         <Grid.Column>
-        <h3>Vote now</h3>
           <Grid container>
+          <h3>Current Vote</h3>
             <Grid.Row>
               <Grid.Column textAlign="center">
                 {proposal.aborted ? (
@@ -253,27 +250,29 @@ const ProposalDetail = ({ loggedInUser, match }) => {
             
             <Grid.Row>
               <Grid container stackable columns={3}>
+              <h3>Vote now</h3>
                 <Grid.Column textAlign="left">
-                  <Button
-                    className="btn"
-                    color="green"
-                    size="mediun"
-                    disabled={cannotVote}
-                    onClick={() => handleYes(proposal)}
-                  >
-                    Vote Yes
-                  </Button>
+                  <ButtonGroup>
+                    <Button
+                      className="btn"
+                      color="green"
+                      size="mediun"
+                      disabled={cannotVote}
+                      onClick={() => handleYes(proposal)}
+                    > Vote Yes
+                    </Button>
+                  <ButtonOr />
+                    <Button
+                      className="btn"
+                      color="red"
+                      size="medium"
+                      disabled={cannotVote}
+                      onClick={() => handleNo(proposal)}
+                    > Vote No
+                    </Button>
+                  </ButtonGroup>
                 </Grid.Column>
                 <Grid.Column textAlign="left">
-                  <Button
-                    className="btn"
-                    color="red"
-                    size="medium"
-                    disabled={cannotVote}
-                    onClick={() => handleNo(proposal)}
-                  >
-                    Vote No
-                  </Button>
                 </Grid.Column>
                 <Grid.Column textAlign="left">
                   <Button

@@ -65,7 +65,7 @@ body {
 }
 
 .blurred {
-  background: #white !important;
+  background: white !important;
 }
 
 .transparent {
@@ -568,6 +568,9 @@ body {
       width: 60px ;
       padding: 22px ;
       margin-top: 0.20em !important;
+    }
+    .amountDetails {
+      padding: 50px !important;
     }
   }
   .description {
