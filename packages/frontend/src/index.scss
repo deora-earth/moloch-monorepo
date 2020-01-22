@@ -467,7 +467,7 @@ body {
 
   #amountYesNo {
     margin-top: -10px !important;
-    padding: 18px 15px ;
+    padding: 18px ;
   }
 
   #newPorposalButton {
@@ -547,9 +547,16 @@ body {
     margin: 30px auto;
   }
   .amount {
-    padding-top: 10px;
+    padding-top: 5px;
+    padding-bottom: 5px;
     font-size: 20px;
     line-height: 15px;
+  }
+  .amount.right {
+    float: right;
+  }
+  .amount.light {
+    font-weight: 600;
   }
   .address {
     font-size: 20px;
@@ -568,9 +575,12 @@ body {
       padding: 22px ;
       margin-top: 0.20em !important;
     }
-    .amountDetails {
-      margin: 150px !important;
-    }
+
+  }
+  .ui.raised.segment {
+    padding: 25px !important;
+    margin-top: 20px;
+    margin-bottom: 30px;
   }
   .description {
     text-align: justify !important;
@@ -612,6 +622,9 @@ body {
   .subtext.description.wordwrap {
     font-weight: 500 !important;
     font-size: 15px;
+    height: 0vh !important;
+    padding-top: 10px;
+    margin-bottom: -40px !important;
   }
   
   @media screen and (min-width: 320px) and (max-width: 375px) { 

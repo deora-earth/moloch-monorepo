@@ -1,5 +1,5 @@
 import React, { useCallback, useState, useEffect } from "react";
-import { Grid, Segment, Button, Image, Loader, Label, ButtonGroup, ButtonOr } from "semantic-ui-react";
+import { Grid, Segment, Button, Image, Loader, Label, ButtonGroup, ButtonOr, Divider } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import hood from "assets/hood.png";
 import ProgressBar from "./ProgressBar";
@@ -171,51 +171,56 @@ const ProposalDetail = ({ loggedInUser, match }) => {
         <Grid.Column>
             <Grid container stackable columns={2} doubling>
               <Grid.Column>
-                <p className="subtext">Applicant/Beneficiary</p>
+                <h3>Applicant/Beneficiary</h3>
                 <ProfileHover address={proposal.applicantAddress} displayFull="true" />
               </Grid.Column>
               <Grid.Column>
-                <p className="subtext">Proposer</p>
+                <h3>Proposer</h3>
                 <ProfileHover
                   address={proposal.memberAddress}
+                  showName="true"
                   displayFull="true"
                   url={`https://molochdao.com/members/${proposal.memberAddress}`}
                 />
               </Grid.Column>
 
-            <Segment raised className="amountDetails" /* Details Segment */ >
+            <Segment raised /* Details Segment */ >
 
-            <Grid container columns={2} className="amountDetails" /* Tribute Row */>
+            <Grid container columns={2} /* Tribute Row */>
                 <Grid.Row>
                   <Grid.Column>
-                    <p className="amount">Tribute</p>
+                    <p className="amount light">Tribute</p>
                   </Grid.Column>
                   <Grid.Column>
-                    <p className="amount">{utils.formatEther(proposal.tokenTribute)} DAI</p>
+                    <p className="amount right">{utils.formatEther(proposal.tokenTribute)} DAI</p>
                   </Grid.Column>
                 </Grid.Row>
               </Grid>
+
+              <Divider />
 
               <Grid.Row> 
               <Grid container columns={2} /* Shares Row */>
                 <Grid.Row>
                   <Grid.Column>
-                    <p className="amount">Shares</p>
+                    <p className="amount light">Shares</p>
                   </Grid.Column>
                   <Grid.Column>
-                    <p className="amount">{proposal.sharesRequested}</p>
+                    <p className="amount right">{proposal.sharesRequested}</p>
                   </Grid.Column>
                 </Grid.Row>
               </Grid>
+
+              <Divider />
 
               <Grid.Row> 
               <Grid container columns={2} /* Total value Row */ >
                 <Grid.Row>
                   <Grid.Column>
-                    <p className="amount">Total value</p>
+                    <p className="amount light">Total value</p>
                   </Grid.Column>
                   <Grid.Column>
-                    <p className="amount">
+                    <p className="amount right">
                     {convertWeiToDollars(
                       utils
                         .bigNumberify(proposal.sharesRequested)
@@ -236,9 +241,8 @@ const ProposalDetail = ({ loggedInUser, match }) => {
 
         <Grid.Column>
           <Grid container>
-          <h3>Current Vote</h3>
             <Grid.Row>
-              <Grid.Column textAlign="center">
+              <Grid.Column textAlign="left">
                 {proposal.aborted ? (
                   <p className="amount">Aborted</p>
                 ) : (
@@ -250,7 +254,6 @@ const ProposalDetail = ({ loggedInUser, match }) => {
             
             <Grid.Row>
               <Grid container stackable columns={3}>
-              <h3>Vote now</h3>
                 <Grid.Column textAlign="left">
                   <ButtonGroup>
                     <Button
@@ -287,12 +290,9 @@ const ProposalDetail = ({ loggedInUser, match }) => {
                 </Grid.Column>
               </Grid>
             </Grid.Row>
-          </Grid>
-        </Grid.Column>
+
         
-        <Grid.Column>
           <h3>Members who voted</h3>
-          <Grid container>
             <Grid.Row>
               <Grid.Column className="member_list">
                 {proposal.votes.length > 0 ? (
@@ -300,10 +300,11 @@ const ProposalDetail = ({ loggedInUser, match }) => {
                     <Grid.Row className="members_row">
                       {/* centered */}
                       {proposal.votes.map((vote, idx) => (
-                        <MemberAvatar
-                          member={vote.member.id}
-                          shares={vote.member.shares}
-                          key={idx}
+                        <ProfileHover
+                        address={vote.member.id}
+                        showName="true"
+                        displayFull="true"
+                        url={`https://molochdao.com/members/${proposal.memberAddress}`}
                         />
                       ))}
                     </Grid.Row>
@@ -311,8 +312,11 @@ const ProposalDetail = ({ loggedInUser, match }) => {
                 ) : null}
               </Grid.Column>
             </Grid.Row>
+
           </Grid>
         </Grid.Column>
+        
+        
       </Grid>
       </Segment>
     </div>

@@ -3,7 +3,6 @@ import { Divider, Grid, Segment, Image, Icon, Label, Header, Loader } from "sema
 import { Link } from "react-router-dom";
 import ProfileHover from "profile-hover";
 
-import bull from "assets/bull.png";
 import user from "assets/user.png";
 
 import { useQuery } from "react-apollo";
@@ -101,11 +100,12 @@ const MemberDetail = ({ loggedInUser, memberAddress, shareValue, exchangeRate })
         </Grid.Row>
         <Grid.Row>
           <Grid.Column textAlign="center" className="avatar">
-            <Image
-              centered
-              src={loggedInUser === member.id || loggedInUser === member.delegateKey ? bull : user}
-              size="tiny"
-            />
+          <ProfileHover
+                address={memberAddress}
+                showName="true"
+                displayFull="true"
+                url={`https://molochdao.com/members/${memberAddress}`}
+              />
           </Grid.Column>
         </Grid.Row>
         <Grid.Row>
