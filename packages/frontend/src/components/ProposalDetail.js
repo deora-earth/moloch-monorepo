@@ -149,7 +149,7 @@ const ProposalDetail = ({ loggedInUser, match }) => {
     <div id="proposal_detail">
       <Segment>
         <Label as='a' color='white' ribbon>
-          <span>{getProposalCountdownText(proposal)}</span>
+          <h4>{getProposalCountdownText(proposal)}</h4>
         </Label>
      
       <Grid container  /*  TITLE */> 

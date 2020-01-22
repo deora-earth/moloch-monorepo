@@ -19,7 +19,7 @@ const ProposalCard = ({ proposal }) => {
       <Link to={{ pathname: `/proposals/${id}` }} className="uncolored">
         <Segment raised>
           <Label as='a' color='white' ribbon>
-          {getProposalCountdownText(proposal)}
+           <h4>{getProposalCountdownText(proposal)}</h4>
         </Label>
           <p className="name">{proposal.title ? proposal.title : "N/A"}</p>
           <p className="subtext description">

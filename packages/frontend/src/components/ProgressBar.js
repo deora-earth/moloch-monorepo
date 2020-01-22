@@ -15,6 +15,7 @@ const ProgressBar = ({ yes, no }) => {
           color="red"
           size="medium"
           progress='percent'
+          textAlign="right"
           style={{
             position: "absolute",
             top: "0",
@@ -27,6 +28,7 @@ const ProgressBar = ({ yes, no }) => {
           color="green"
           size="medium"
           progress='percent'
+          textAlign="right"
           className={yes === 0 ? "hide-bar" : ""}
         />
       </div>
