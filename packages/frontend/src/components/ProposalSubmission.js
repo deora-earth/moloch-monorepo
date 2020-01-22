@@ -276,7 +276,6 @@ export default class ProposalSubmission extends Component {
       submittedTx,
     } = this.state;
     const { loggedInUser } = this.props;
-    console.log("bla", loggedInUser);
     return (
       <div id="proposal_submission">
         <Form>

@@ -4,7 +4,6 @@ import { Route, Switch, Link, Redirect } from "react-router-dom";
 
 import ProposalDetail from "./ProposalDetail";
 import ProgressBar from "./ProgressBar";
-import ProposalSubmission from "./ProposalSubmission";
 import { useQuery } from "react-apollo";
 import { ProposalStatus, getProposalCountdownText } from "../helpers/proposals";
 import { utils } from "ethers";
