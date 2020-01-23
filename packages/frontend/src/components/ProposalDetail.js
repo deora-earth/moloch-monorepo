@@ -180,7 +180,7 @@ const ProposalDetail = ({ loggedInUser, match }) => {
                   address={proposal.memberAddress}
                   showName="true"
                   displayFull="true"
-                  url={`https://molochdao.com/members/${proposal.memberAddress}`}
+                  to={`/members/${proposal.memberAddress}`}
                 />
               </Grid.Column>
 
@@ -241,6 +241,26 @@ const ProposalDetail = ({ loggedInUser, match }) => {
 
         <Grid.Column>
           <Grid container>
+          <h3>Members who voted</h3>
+            <Grid.Row>
+              <Grid.Column className="member_list">
+                {proposal.votes.length > 0 ? (
+                  <Grid>
+                    <Grid.Row className="members_row">
+                      {/* centered */}
+                      {proposal.votes.map((vote, idx) => (
+                        <ProfileHover
+                        address={vote.member.id}
+                        showName="true"
+                        displayFull="true"
+                        to={`/members/${proposal.memberAddress}`}
+                        />
+                      ))}
+                    </Grid.Row>
+                  </Grid>
+                ) : null}
+              </Grid.Column>
+            </Grid.Row>
             <Grid.Row>
               <Grid.Column textAlign="left">
                 {proposal.aborted ? (
@@ -290,33 +310,8 @@ const ProposalDetail = ({ loggedInUser, match }) => {
                 </Grid.Column>
               </Grid>
             </Grid.Row>
-
-        
-          <h3>Members who voted</h3>
-            <Grid.Row>
-              <Grid.Column className="member_list">
-                {proposal.votes.length > 0 ? (
-                  <Grid>
-                    <Grid.Row className="members_row">
-                      {/* centered */}
-                      {proposal.votes.map((vote, idx) => (
-                        <ProfileHover
-                        address={vote.member.id}
-                        showName="true"
-                        displayFull="true"
-                        url={`https://molochdao.com/members/${proposal.memberAddress}`}
-                        />
-                      ))}
-                    </Grid.Row>
-                  </Grid>
-                ) : null}
-              </Grid.Column>
-            </Grid.Row>
-
           </Grid>
-        </Grid.Column>
-        
-        
+        </Grid.Column>        
       </Grid>
       </Segment>
     </div>

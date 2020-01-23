@@ -104,7 +104,7 @@ const MemberDetail = ({ loggedInUser, memberAddress, shareValue, exchangeRate })
                 address={memberAddress}
                 showName="true"
                 displayFull="true"
-                url={`https://molochdao.com/members/${memberAddress}`}
+                href="/members/${memberAddress}"
               />
           </Grid.Column>
         </Grid.Row>

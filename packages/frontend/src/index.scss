@@ -306,6 +306,7 @@ body {
 
 #member_list {
   margin-top: -20px !important ;
+  width: 100%;
   .name {
     margin: 10px 30px 0;
     color: rgb(10, 1, 48) !important;
@@ -316,7 +317,7 @@ body {
   }
   .members_row {
     .member {
-      margin-bottom: 40px;
+      margin-bottom: 80px !important;
     }
   }
   .member_avatar {
