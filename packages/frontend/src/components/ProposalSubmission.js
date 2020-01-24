@@ -40,9 +40,6 @@ class SubmitModal extends Component {
       beneficiaryApproved = true;
     }
 
-    console.log(loggedInUser);
-    console.log(moloch.address);
-
     const depositAllowance = await token.allowance(loggedInUser, moloch.address);
     let depositApproved = false;
     if (depositAllowance.gte(utils.parseEther(DEPOSIT_WETH))) {

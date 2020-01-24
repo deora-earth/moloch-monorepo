@@ -311,7 +311,7 @@ const ProposalDetail = ({ loggedInUser, match }) => {
               </Grid>
             </Grid.Row>
           </Grid>
-        </Grid.Column>        
+        </Grid.Column>
       </Grid>
       </Segment>
     </div>
