@@ -250,10 +250,10 @@ const ProposalDetail = ({ loggedInUser, match }) => {
                       {/* centered */}
                       {proposal.votes.map((vote, idx) => (
                         <ProfileHover
-                        address={vote.member.id}
-                        showName="true"
-                        displayFull="true"
-                        to={`/members/${proposal.memberAddress}`}
+                          address={vote.member.id}
+                          showName="true"
+                          displayFull="true"
+                          to={`/members/${proposal.memberAddress}`}
                         />
                       ))}
                     </Grid.Row>
