@@ -1,5 +1,5 @@
 import React from "react";
-import { Divider, Grid, Segment, Image, Icon, Label, Header, Loader } from "semantic-ui-react";
+import { Divider, Grid, Segment, Icon, Label, Header, Loader } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import ProfileHover from "profile-hover";
 
@@ -66,7 +66,7 @@ const GET_METADATA = gql`
   }
 `;
 
-const MemberDetail = ({ loggedInUser, memberAddress, shareValue, exchangeRate }) => {
+const MemberDetail = ({ memberAddress, shareValue, exchangeRate }) => {
   const { loading, error, data } = useQuery(GET_MEMBER_DETAIL, {
     variables: { address: memberAddress },
   });
@@ -75,6 +75,7 @@ const MemberDetail = ({ loggedInUser, memberAddress, shareValue, exchangeRate })
   }
   if (error) throw new Error(error);
   const { member } = data;
+
   return (
     <Segment className="blurred box">
       <Grid container columns={1}>
