@@ -305,7 +305,7 @@ body {
 }
 
 #member_list {
-  margin-top: -20px !important ;
+  height: 50% !important;
   width: 100%;
   .name {
     margin: 10px 30px 0;
@@ -320,8 +320,10 @@ body {
       margin-bottom: 80px !important;
     }
   }
-  .member_avatar {
-    margin-top: 25px;
+
+  #shares {
+    margin-top: 15px !important;
+    padding-left: 22px;
   }
 
   @media screen and (min-width: 320px) and (max-width: 375px) { 

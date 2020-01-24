@@ -17,18 +17,11 @@ const MemberAvatar = ({ address, shares }) => (
     tablet={3}
     computer={3}
     textAlign="center"
-    className="member_avatar"
-    title={address}
   >
-    <ProfileHover address={address} noTheme>
-      <Link to={`/members/${address}`} className="uncolored">
-        <Image src={user} centered size="tiny" />
-        <p className="name">
-          {!address ? "" : address.length > 10 ? address.substring(0, 10) + "..." : address}
-        </p>
-        <p className="subtext">{shares} shares</p>
+    <Link to={`/members/${address}`} className="uncolored">
+      <ProfileHover address={address} showName="true" />
       </Link>
-    </ProfileHover>
+      <p id="shares" className="subtext">{shares} shares</p>  
   </Grid.Column>
 );
 
