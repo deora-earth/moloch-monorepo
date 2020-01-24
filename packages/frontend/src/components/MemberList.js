@@ -18,12 +18,17 @@ const MemberAvatar = ({ address, shares }) => (
     computer={3}
     textAlign="center"
     className="member_avatar"
+    title={address}
   >
-    
+    <ProfileHover address={address} noTheme>
       <Link to={`/members/${address}`} className="uncolored">
-        <ProfileHover address={address}  showName="true" />
+        <Image src={user} centered size="tiny" />
+        <p className="name">
+          {!address ? "" : address.length > 10 ? address.substring(0, 10) + "..." : address}
+        </p>
         <p className="subtext">{shares} shares</p>
       </Link>
+    </ProfileHover>
   </Grid.Column>
 );
 
@@ -36,13 +41,13 @@ const LoggedInUser = ({ loggedInUser }) => {
 
   const { member } = data;
   return member && member.isActive ? (
-    <ProfileHover address={loggedInUser} showName="true">
       <Link to={`/members/${member.id}`} className="uncolored">
+        <Image centered src={user} size="tiny" />
         <p className="name">
           {!member.id ? "" : member.id.length > 10 ? member.id.substring(0, 10) + "..." : member.id}
         </p>
+        <p className="subtext">{member.shares ? member.shares : 0} shares</p>
       </Link>
-    </ProfileHover>
   ) : (
     <div />
   );
