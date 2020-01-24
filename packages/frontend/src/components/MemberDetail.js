@@ -3,8 +3,6 @@ import { Divider, Grid, Segment, Icon, Label, Header, Loader } from "semantic-ui
 import { Link } from "react-router-dom";
 import ProfileHover from "profile-hover";
 
-import user from "assets/user.png";
-
 import { useQuery } from "react-apollo";
 import { Vote } from "./ProposalDetail";
 import { utils } from "ethers";
@@ -77,63 +75,76 @@ const MemberDetail = ({ memberAddress, shareValue, exchangeRate }) => {
   const { member } = data;
 
   return (
+    <div id="member_detail">
     <Segment className="blurred box">
-      <Grid container columns={1}>
-        <Grid.Row>
-          <Grid container columns={2}>
-            <Grid.Column>
-              <p className="subtitle">Shares</p>
-              <p className="amount">{member.shares}</p>
-            </Grid.Column>
-            <Grid.Column textAlign="right">
-              <p className="subtitle">Total Value</p>
-              <p className="amount">
-                {convertWeiToDollars(
-                  utils
-                    .bigNumberify(member.shares)
-                    .mul(shareValue)
-                    .toString(),
-                  exchangeRate,
-                )}
-              </p>
-            </Grid.Column>
-          </Grid>
-        </Grid.Row>
-        <Grid.Row>
-          <Grid.Column textAlign="center" className="avatar">
+    <Label attached='top right'>
+      <p>edit profile</p>
+    </Label>
+      <Grid columns={1}>
+
+      <Grid.Row>
           <ProfileHover
-                address={memberAddress}
-                showName="true"
-                displayFull="true"
-                href="/members/${memberAddress}"
-              />
-          </Grid.Column>
+            address={memberAddress}
+            showName="true"
+            displayFull="true"
+            href="/members/${memberAddress}"
+          />
         </Grid.Row>
+
         <Grid.Row>
-          <Grid.Column>
-            <p className="subtitle">Tribute</p>
-          </Grid.Column>
+        <Segment raised>
+          <Grid columns={2}>
+            <Grid.Row>
+              <Grid.Column>
+                <p className="subtitle">Shares</p>
+              </Grid.Column>
+              <Grid.Column textAlign="right">
+                <p className="amount">{member.shares}</p>
+              </Grid.Column>
+            </Grid.Row>
+            <Divider />
+            <Grid.Row>
+              <Grid.Column>
+                <p className="subtitle">Total Value</p>
+              </Grid.Column>
+              <Grid.Column textAlign="right">
+                <p className="amount">
+                  {convertWeiToDollars(
+                    utils
+                      .bigNumberify(member.shares)
+                      .mul(shareValue)
+                      .toString(),
+                    exchangeRate,
+                  )}
+                </p>
+              </Grid.Column>
+            </Grid.Row>
+            <Divider />
+            <Grid.Row>
+              <Grid.Column>
+                <p className="subtitle">Tribute</p>
+              </Grid.Column>
+              <Grid.Column textAlign="right">
+                <p className="amount"> 
+                  {utils.formatEther(member.tokenTribute)} DAI
+                </p>
+              </Grid.Column>
+            </Grid.Row>
+          </Grid>
+          </Segment>
         </Grid.Row>
-        <Grid.Row>
-          <Grid.Column>
-            <Segment className="pill" textAlign="center">
-              <Icon name="ethereum" />
-              {utils.formatEther(member.tokenTribute)} ETH
-            </Segment>
-          </Grid.Column>
-        </Grid.Row>
+
         <Grid.Row>
           <Grid.Column>
             <p className="subtitle">Delegate Key</p>
           </Grid.Column>
           <Grid.Column>
-            <ProfileHover address={member.delegateKey} displayFull="true">
-              <p className="title">{member.delegateKey}</p>
-            </ProfileHover>
+              <h4 className="delegateKey">{member.delegateKey}</h4>
           </Grid.Column>
         </Grid.Row>
       </Grid>
     </Segment>
+    </div>
   );
 };
 
@@ -151,10 +162,10 @@ const ProposalDetail = ({ memberAddress }) => {
     <Segment className="blurred box">
       <Grid columns="equal" textAlign="center">
         <Grid.Row className="subtext" style={{ fontSize: 20 }}>
-          History
+          <h1 className="Title">History</h1>
         </Grid.Row>
       </Grid>
-      <Grid columns="equal">
+      <Grid columns="6">
         <Grid.Row className="header">
           <Grid.Column textAlign="center">
             <p className="subtext">Proposal Title</p>
@@ -242,21 +253,7 @@ const MemberDetailView = ({ loggedInUser, match }) => {
   const shareValue = getShareValue(totalShares, guildBankValue);
   return (
     <div id="member_detail">
-      <Divider />
       <Grid container>
-        <Grid.Row>
-          <Grid.Column mobile={16} tablet={16} computer={6}>
-            <p className="title">
-              <a
-                href={`https://etherscan.io/address/${match.params.name}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                {formatEthAddress(match.params.name)}
-              </a>
-            </p>
-          </Grid.Column>
-        </Grid.Row>
         <Grid.Row className="details">
           <Grid.Column mobile={16} tablet={16} computer={6} className="user">
             <MemberDetail

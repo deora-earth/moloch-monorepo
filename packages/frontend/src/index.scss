@@ -18,7 +18,7 @@ body {
 }
 
 .subtitle {
-  font-size: 15px;
+  font-size: 20px;
   color: rgb(10, 1, 48) !important;
 }
 
@@ -305,7 +305,6 @@ body {
 }
 
 #member_list {
-  height: 50% !important;
   width: 100%;
   .name {
     margin: 10px 30px 0;
@@ -363,7 +362,8 @@ body {
     line-height: 15px;
   }
   .avatar {
-    margin: 50px;
+    margin: 20px 0px;
+    font-size: 20px;
   }
   .user {
     .segment {
@@ -622,6 +622,7 @@ body {
       background-color: transparent
     }
   }
+  
   .subtext.description.wordwrap {
     font-weight: 500 !important;
     font-size: 15px;
@@ -690,6 +691,17 @@ body {
       height: 60px !important;
       padding: 22px !important;
     }
+  }
+}
+
+#member_detail {
+  .ui.raised.segment {
+    padding: 25px !important;
+  }
+  .delegateKey {
+    color: rgb(10, 1, 48);
+    font-size: small;
+    padding-top: 10px;
   }
 }
 
