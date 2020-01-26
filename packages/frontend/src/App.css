@@ -139,9 +139,3 @@ h4 {
   border-radius: 50px;
   cursor: pointer;
 }
-
-.ui.raised.segment {
-  padding: 25px !important;
-  margin-top: 20px;
-  margin-bottom: 30px;
-}

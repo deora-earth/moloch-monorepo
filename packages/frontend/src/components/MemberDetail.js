@@ -1,5 +1,5 @@
 import React from "react";
-import { Divider, Grid, Segment, Icon, Label, Header, Loader } from "semantic-ui-react";
+import { Divider, Grid, Segment, Label, Header, Loader } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 import ProfileHover from "profile-hover";
 
@@ -8,7 +8,6 @@ import { Vote } from "./ProposalDetail";
 import { utils } from "ethers";
 import { convertWeiToDollars, getShareValue } from "../helpers/currency";
 import { getProposalCountdownText } from "../helpers/proposals";
-import { formatEthAddress } from "../helpers/address";
 import gql from "graphql-tag";
 
 const GET_MEMBER_DETAIL = gql`
@@ -77,11 +76,7 @@ const MemberDetail = ({ memberAddress, shareValue, exchangeRate }) => {
   return (
     <div id="member_detail">
     <Segment className="blurred box">
-    <Label attached='top right'>
-      <p>edit profile</p>
-    </Label>
       <Grid columns={1}>
-
       <Grid.Row>
           <ProfileHover
             address={memberAddress}
@@ -90,7 +85,6 @@ const MemberDetail = ({ memberAddress, shareValue, exchangeRate }) => {
             href="/members/${memberAddress}"
           />
         </Grid.Row>
-
         <Grid.Row>
         <Segment raised>
           <Grid columns={2}>
