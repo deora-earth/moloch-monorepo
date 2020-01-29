@@ -18,10 +18,12 @@ const MemberAvatar = ({ address, shares }) => (
     computer={3}
     textAlign="center"
   >
+    <div className="profile">
     <Link to={`/members/${address}`} className="uncolored">
       <ProfileHover address={address} showName="true" />
-      </Link>
-      <p id="shares" className="subtext">{shares} shares</p>  
+    </Link>
+    </div>
+      <p className="uncolored">{shares} shares</p>
   </Grid.Column>
 );
 
