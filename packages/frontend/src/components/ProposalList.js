@@ -1,6 +1,6 @@
 import React from "react";
-import { Segment, Grid, Button, Tab, Loader, Divider, Label } from "semantic-ui-react";
-import { Route, Switch, Link, Redirect } from "react-router-dom";
+import { Segment, Grid, Tab, Loader, Divider, Label, Dropdown,} from "semantic-ui-react";
+import { Route, Switch, Link,} from "react-router-dom";
 
 import ProposalDetail from "./ProposalDetail";
 import ProgressBar from "./ProgressBar";
@@ -307,18 +307,24 @@ const ProposalList = ({ isActive }) => {
           )}
         </Tab.Pane>
       ),
-    },        
+    },     
     {
-      menuItem: <Button size="medium" color="grey" id="newPorposalButton" to={isActive ? "/proposalsubmission" : "/proposals"} disabled={!isActive}>
-                  New Proposal
-                </Button>,
-      render: () => (
-        <Tab.Pane attached={false}>
-          <Redirect to="/proposalsubmission" />
-
-        </Tab.Pane>
-      ),
-    },
+      menuItem: <Dropdown text="New Proposal" id="newPorposalDropdown" simple item disabled={!isActive}>
+                  <Dropdown.Menu>
+                    <Dropdown.Item text='Member Proposal'>
+                      <Link to="/proposalsubmission" className="uncolored">
+                        Member Proposal
+                      </Link>
+                    </Dropdown.Item>
+                  <Dropdown.Item text='Member Proposal'>
+                      <Link to="/fundingsubmission" className="uncolored">
+                        Funding Proposal
+                      </Link>
+                    </Dropdown.Item>
+                  </Dropdown.Menu>
+                </Dropdown>
+    } 
+     
   ];
 
 
