@@ -11,7 +11,7 @@ import Background from "./components/Background";
 import Header from "./components/Header";
 import Home from "./components/Home";
 import MemberList from "./components/MemberList";
-import PoolMemberListView from "./components/PoolMemberList";
+import FundingSubmission from "./components/FundingSubmission";
 import ProposalList from "./components/ProposalList";
 import ProposalSubmission from "./components/ProposalSubmission";
 import Wrapper from "./components/Wrapper";
@@ -91,8 +91,14 @@ const Routes = () => {
                 }
               />
               <Route
-                path="/pool-members"
-                render={props => <PoolMemberListView {...props} loggedInUser={loggedInUser} />}
+                path="/fundingsubmission"
+                render={props =>
+                  loggedInUser ? (
+                    <FundingSubmission {...props} loggedInUser={loggedInUser} />
+                  ) : (
+                    <Redirect to={{ pathname: "/" }} />
+                  )
+                }
               />
               <Route component={props => <Home {...props} loggedInUser={loggedInUser} />} />
             </Switch>

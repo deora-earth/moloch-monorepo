@@ -13,6 +13,17 @@ import {
 import { getMoloch, getToken, } from "../web3";
 import { utils } from "ethers";
 import { monitorTx } from "helpers/transaction";
+import { getShareValue } from "../helpers/currency";
+import { useQuery } from "react-apollo";
+import gql from "graphql-tag";
+
+const GET_METADATA = gql`
+  {
+    exchangeRate @client
+    totalShares @client
+    guildBankValue @client
+  }
+`;
 
 class FundingModal extends Component {
   state = {
@@ -89,18 +100,17 @@ class FundingModal extends Component {
   }
 }
 
-export default class ProposalSubmission extends Component {
+export default class FundingSubmission extends Component {
   state = {
     address: "",
     title: "",
     description: "",
-    shares: "",
+    amount: "",
     tribute: "0", // TODO: this will be calculated with the blockchain
-    fieldValidationErrors: { title: "", description: "", assets: "", shares: "" },
+    fieldValidationErrors: { title: "", description: "", assets: "", amount: "" },
     titleValid: false,
     descriptionValid: false,
-    tributeValid: false,
-    sharesValid: false,
+    amountValid: false,
     addressValid: false,
     formValid: false,
   };
@@ -120,8 +130,7 @@ export default class ProposalSubmission extends Component {
       fieldValidationErrors,
       titleValid,
       descriptionValid,
-      tributeValid,
-      sharesValid,
+      amountValid,
       addressValid,
     } = this.state;
 
@@ -140,13 +149,9 @@ export default class ProposalSubmission extends Component {
         descriptionValid = value !== "";
         fieldValidationErrors.description = descriptionValid ? "" : "Description is invalid";
         break;
-      case "shares":
-        sharesValid = value > 0;
-        fieldValidationErrors.shares = sharesValid ? "" : "Shares is invalid";
-        break;
-      case "tribute":
-        tributeValid = value >= 0;
-        fieldValidationErrors.tribute = tributeValid ? "" : "Tribute is invalid";
+      case "amount":
+        amountValid = value > 0;
+        fieldValidationErrors.amount = amountValid ? "" : "Amount is invalid";
         break;
       default:
         break;
@@ -156,8 +161,7 @@ export default class ProposalSubmission extends Component {
         fieldValidationErrors,
         titleValid,
         descriptionValid,
-        tributeValid,
-        sharesValid,
+        amountValid,
         addressValid,
       },
       this.validateForm,
@@ -165,9 +169,9 @@ export default class ProposalSubmission extends Component {
   };
 
   validateForm = () => {
-    const { titleValid, descriptionValid, sharesValid, tributeValid, addressValid } = this.state;
+    const { titleValid, descriptionValid, amountValid, addressValid } = this.state;
     this.setState({
-      formValid: titleValid && descriptionValid && sharesValid && tributeValid && addressValid,
+      formValid: titleValid && descriptionValid && amountValid && addressValid,
     });
   };
 
@@ -180,7 +184,9 @@ export default class ProposalSubmission extends Component {
   };
 
   handleSubmit = async () => {
-    const { moloch, address, title, description, shares, tribute } = this.state;
+    const { moloch, address, title, description, amount, tribute } = this.state;
+    const { guildBankValue, totalShares, } = useQuery(GET_METADATA);
+    const { shares } = amount / getShareValue(totalShares, guildBankValue) ;
 
     let submittedTx;
     try {
@@ -211,7 +217,7 @@ export default class ProposalSubmission extends Component {
 
   render() {
     const {
-      shares,
+      amount,
       tribute,
       title,
       description,
@@ -221,8 +227,7 @@ export default class ProposalSubmission extends Component {
       moloch,
       titleValid,
       descriptionValid,
-      sharesValid,
-      tributeValid,
+      amountValid,
       addressValid,
       submittedTx,
     } = this.state;
@@ -231,6 +236,9 @@ export default class ProposalSubmission extends Component {
       <div id="proposal_submission">
         <Form>
           <Grid centered columns={16}>
+            <Grid.Column mobile={16} tablet={16} computer={12}>
+              <h1> New Funding Proposal </h1>
+            </Grid.Column>
             <Grid.Row stretched>
               <Grid.Column mobile={16} tablet={16} computer={12}>
                 <Input
@@ -257,14 +265,14 @@ export default class ProposalSubmission extends Component {
                     error={!addressValid}
                   />
                   <Form.Input
-                    name="shares"
+                    name="amount"
                     label="DAI Requested"
                     placeholder="DAI"
                     fluid
                     type="number"
                     onChange={this.handleInput}
-                    value={shares}
-                    error={!sharesValid}
+                    value={amount}
+                    error={!amountValid}
                   />
                 </Segment>
               </Grid.Column>

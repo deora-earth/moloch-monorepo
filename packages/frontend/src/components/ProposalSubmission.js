@@ -277,6 +277,9 @@ export default class ProposalSubmission extends Component {
       <div id="proposal_submission">
         <Form>
           <Grid centered columns={16}>
+            <Grid.Column mobile={16} tablet={16} computer={12}>
+              <h1> New Member Proposal </h1>
+            </Grid.Column>
             <Grid.Row stretched>
               <Grid.Column mobile={16} tablet={16} computer={12}>
                 <Input
