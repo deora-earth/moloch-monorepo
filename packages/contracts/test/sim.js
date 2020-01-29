@@ -99,18 +99,15 @@ contract("Moloch", accounts => {
 
     summoner = accounts[0];
     await simpleToken.approve(moloch.address, new BigNumber(configJSON.PROPOSAL_DEPOSIT * numAccounts));
-    console.log('here');
     // transfer proposal deposit SIM to applicant
     for (let x = 1; x <= numAccounts; x++) {
       await simpleToken.transfer(accounts[x], new BigNumber(configJSON.PROPOSAL_DEPOSIT));
       await simpleToken.approve(moloch.address, new BigNumber(configJSON.PROPOSAL_DEPOSIT), { from: accounts[x] });
-      console.log('here1');
       let applicant = {};
       applicant.address = accounts[x];
       applicant.sharesRequested = randomInt(1, 10);
       applicant.tokenTribute = configJSON.PROPOSAL_DEPOSIT;
       applicants.push(applicant);
-      console.log('here2');
     }
   });
 
