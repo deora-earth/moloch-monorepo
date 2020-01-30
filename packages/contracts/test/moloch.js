@@ -1,9 +1,9 @@
 /* global artifacts, contract, assert, web3 */
 /* eslint-env mocha */
 
-const Moloch = artifacts.require('./Moloch')
-const SimpleToken = artifacts.require('./SimpleToken')
-const configJSON = require('../migrations/config.json')
+const Moloch = artifacts.require('./Moloch');
+const SimpleToken = artifacts.require('./SimpleToken');
+const configJSON = require('../migrations/config.json');
 
 const abi = require('web3-eth-abi')
 const HttpProvider = require(`ethjs-provider-http`)
@@ -42,9 +42,15 @@ async function moveForwardPeriods(periods) {
 }
 
 contract('Moloch', accounts => {
+  let moloch;
+  let guildBank;
+  let summoner;
+  let applicant;
+  let beneficiary;
 
   before('deploy contracts', async () => {
     moloch = await Moloch.deployed();
+    guildBank = await moloch.guildBank();
     simpleToken = await SimpleToken.deployed();
 
     summoner = accounts[0];
@@ -55,10 +61,10 @@ contract('Moloch', accounts => {
     
     // approve 10 SIM owner summoner and applicant to Moloch contract (spender)
     await simpleToken.approve(moloch.address, new BigNumber(configJSON.PROPOSAL_DEPOSIT * 2));
-    await simpleToken.approve(moloch.address, new BigNumber(configJSON.PROPOSAL_DEPOSIT), {from:applicant});
+    await simpleToken.approve(moloch.address, new BigNumber(configJSON.PROPOSAL_DEPOSIT), {from : applicant});
   })
 
-  it('verify deployment parameters', async () => {
+  it('allows to verify deployment parameters', async () => {
     const now = await blockTime() 
     const summoningTime =  await moloch.summoningTime()
 
@@ -71,14 +77,14 @@ contract('Moloch', accounts => {
     assert.equal(await moloch.processingReward(), configJSON.PROCESSING_REWARD)
   })
 
-  it('submit membership proposal', async () => {
+  it('allows to submit a membership proposal', async () => {
     const tx = await moloch.submitProposal(applicant, new BigNumber(configJSON.PROPOSAL_DEPOSIT), 3, "first proposal");
     assert.equal(+tx.logs[0].args.proposalIndex, 0);
     assert.equal(tx.logs[0].args.applicant, applicant);
     assert.equal(tx.logs[0].args.memberAddress, summoner);
   })
 
-  it("submit membership vote", async () => {
+  it("allows to vote on a membership proposal", async () => {
     await moveForwardPeriods(1);
     let tx = await moloch.submitVote(0, 1, {from: summoner});
     assert.equal(+tx.logs[0].args.proposalIndex, 0);
@@ -87,7 +93,7 @@ contract('Moloch', accounts => {
     assert.equal(+tx.logs[0].args.uintVote, 1);
   });
 
-  it("process membership proposals", async () => {
+  it("allows to process a membership proposal", async () => {
     await moveForwardPeriods(14);
     let tx = await moloch.processProposal(0);
     assert.equal(+tx.logs[0].args.proposalIndex, 0);
@@ -98,7 +104,7 @@ contract('Moloch', accounts => {
     assert.equal(tx.logs[0].args.didPass, true);
   });
 
-  it('submit funding proposal', async () => {
+  it('allows to submit funding proposal', async () => {
     // there are 4 shares in total, requesting 2
     const tx = await moloch.submitProposal(beneficiary, 0, 2, "funding proposal");
     assert.equal(+tx.logs[0].args.proposalIndex, 1);
@@ -106,7 +112,7 @@ contract('Moloch', accounts => {
     assert.equal(tx.logs[0].args.memberAddress, summoner);
   })
 
-  it("submit funding vote", async () => {
+  it("allows to vote on funding proposal", async () => {
     await moveForwardPeriods(1);
     let tx = await moloch.submitVote(1, 1, {from: summoner});
     assert.equal(+tx.logs[0].args.proposalIndex, 1);
@@ -115,8 +121,11 @@ contract('Moloch', accounts => {
     assert.equal(+tx.logs[0].args.uintVote, 1);
   });
 
-  it("process funding proposals", async () => {
+  it("allows to process a funding proposal", async () => {
+    let shares = await moloch.totalShares();
+    assert.equal(+shares, 4);
     await moveForwardPeriods(14);
+    const guildBankBefore = await simpleToken.balanceOf(guildBank);
     const balBefore = await simpleToken.balanceOf(beneficiary);
     assert.equal(+balBefore, 0);
     let tx = await moloch.processProposal(1);
@@ -126,11 +135,13 @@ contract('Moloch', accounts => {
     assert.equal(+tx.logs[0].args.tokenTribute, 0);
     assert.equal(+tx.logs[0].args.sharesRequested, 2);
     assert.equal(tx.logs[0].args.didPass, true);
+    const guildBankAfter = await simpleToken.balanceOf(guildBank);
+    assert.equal(+guildBankAfter, guildBankBefore / 2);
     const balAfter = await simpleToken.balanceOf(beneficiary);
     // requesting funding of 2 shares, when total shares are 4, will return half of total bank
-    assert.equal(balAfter * 2, new BigNumber(configJSON.PROPOSAL_DEPOSIT));
+    assert.equal(balAfter * 2, +guildBankBefore);
     // amount of shares should have not increased
-    const shares = await moloch.totalShares();
+    hares = await moloch.totalShares();
     assert.equal(+shares, 4);
   });
 
