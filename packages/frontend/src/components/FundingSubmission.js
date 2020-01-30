@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState, Component } from 'react'
 import {
   Button,
   Form,
@@ -13,8 +13,8 @@ import {
 import { getMoloch, getToken, } from "../web3";
 import { utils } from "ethers";
 import { monitorTx } from "helpers/transaction";
-import { getShareValue } from "../helpers/currency";
-import { useQuery } from "react-apollo";
+import { useLazyQuery } from "react-apollo";
+import { bigNumberify } from "ethers/utils";
 import gql from "graphql-tag";
 
 const GET_METADATA = gql`
@@ -25,11 +25,9 @@ const GET_METADATA = gql`
   }
 `;
 
-class FundingModal extends Component {
+class SubmitModal extends Component {
   state = {
     loading: true,
-    beneficiaryApproved: false,
-    depositApproved: false,
     open: false,
   };
 
@@ -42,10 +40,16 @@ class FundingModal extends Component {
     this.setState({
       open: true,
     });
-  }
+  };
+
+  handleClose = () => {
+    this.setState({
+      open: false,
+    });
+  };
 
   render() {
-    const { loading, open } = this.state;
+    const { open } = this.state;
     const { handleSubmit, submittedTx } = this.props;
     return (
     <div id="proposal_submission">
@@ -59,7 +63,7 @@ class FundingModal extends Component {
         size="small"
         open={open}
       >
-        <Header content="Submit your Founding Proposal" />
+        <Header content="Submit Proposal" />
         <Modal.Content>
           <List>
             <List.Item>
@@ -101,12 +105,13 @@ class FundingModal extends Component {
 }
 
 export default class FundingSubmission extends Component {
+  
   state = {
     address: "",
     title: "",
     description: "",
     amount: "",
-    tribute: "0", // TODO: this will be calculated with the blockchain
+    tribute: 0, // TODO: this will be calculated with the blockchain
     fieldValidationErrors: { title: "", description: "", assets: "", amount: "" },
     titleValid: false,
     descriptionValid: false,
@@ -114,14 +119,18 @@ export default class FundingSubmission extends Component {
     addressValid: false,
     formValid: false,
   };
-
+  
   async componentDidMount() {
     const { loggedInUser } = this.props;
     const moloch = await getMoloch(loggedInUser);
     const token = await getToken(loggedInUser);
+    const [ guildData, setGuildData ] = useState(null);
+    const [ getGuildData, { loading, data} ] = useLazyQuery(GET_METADATA);
+
     this.setState({
       moloch,
       token,
+      data,
     });
   }
 
@@ -184,9 +193,14 @@ export default class FundingSubmission extends Component {
   };
 
   handleSubmit = async () => {
-    const { moloch, address, title, description, amount, tribute } = this.state;
-    const { guildBankValue, totalShares, } = useQuery(GET_METADATA);
-    const { shares } = amount / getShareValue(totalShares, guildBankValue) ;
+    const { moloch, address, title, description, amount, tribute, data } = this.state;
+    console.log(data)
+    const shares = bigNumberify(amount).div(bigNumberify(data.shareValue));
+
+    
+    console.log("shareValue " + parseFloat(data.shareValue))
+    console.log("amount " + amount)
+    console.log("Shares " +shares)
 
     let submittedTx;
     try {
@@ -232,6 +246,7 @@ export default class FundingSubmission extends Component {
       submittedTx,
     } = this.state;
     const { loggedInUser } = this.props;
+
     return (
       <div id="proposal_submission">
         <Form>
@@ -257,7 +272,7 @@ export default class FundingSubmission extends Component {
                 <Segment className="blurred box">
                   <Form.Input
                     name="address"
-                    label="Applicant"
+                    label="Beneficiary or Applicant"
                     placeholder="Address"
                     fluid
                     onChange={this.handleInput}
@@ -301,7 +316,7 @@ export default class FundingSubmission extends Component {
                 {/* <Button size="large" color="red" onClick={this.handleSubmit}>
                   Submit Proposal
                 </Button> */}
-                <FundingModal
+                <SubmitModal
                   valid={formValid}
                   tribute={tribute}
                   address={address}
