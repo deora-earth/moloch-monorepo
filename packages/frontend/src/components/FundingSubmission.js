@@ -1,4 +1,4 @@
-import React, { useState, Component } from 'react'
+import React, { Component } from 'react'
 import {
   Button,
   Form,
@@ -13,9 +13,10 @@ import {
 import { getMoloch, getToken, } from "../web3";
 import { utils } from "ethers";
 import { monitorTx } from "helpers/transaction";
-import { useLazyQuery } from "react-apollo";
+import { Query } from "react-apollo";
 import { bigNumberify } from "ethers/utils";
 import gql from "graphql-tag";
+import { getShareValue } from "../helpers/currency";
 
 const GET_METADATA = gql`
   {
@@ -25,20 +26,34 @@ const GET_METADATA = gql`
   }
 `;
 
+const DEPOSIT_WETH = process.env.REACT_APP_DEPOSIT_WETH || "10";
+
 class SubmitModal extends Component {
   state = {
     loading: true,
+    depositApproved: false,
     open: false,
   };
 
   handleOpen = async () => {
-    const { valid } = this.props;
+    const { token, moloch, loggedInUser, valid } = this.props;
     if (!valid) {
       alert("Please fill any missing fields.");
       return;
     }
     this.setState({
       open: true,
+    });
+
+    const depositAllowance = await token.allowance(loggedInUser, moloch.address);
+    let depositApproved = false;
+    if (depositAllowance.gte(utils.parseEther(DEPOSIT_WETH))) {
+      depositApproved = true;
+    }
+
+    this.setState({
+      depositApproved,
+      loading: false,
     });
   };
 
@@ -49,7 +64,7 @@ class SubmitModal extends Component {
   };
 
   render() {
-    const { open } = this.state;
+    const { loading, depositApproved, open } = this.state;
     const { handleSubmit, submittedTx } = this.props;
     return (
     <div id="proposal_submission">
@@ -66,6 +81,16 @@ class SubmitModal extends Component {
         <Header content="Submit Proposal" />
         <Modal.Content>
           <List>
+            <List.Item>
+              {loading ? (
+                <List.Icon name="time" />
+              ) : depositApproved ? (
+                <List.Icon name="check circle" />
+              ) : (
+                <List.Icon name="x" />
+              )}
+              <List.Content>{DEPOSIT_WETH} DAI Deposit Approved</List.Content>
+            </List.Item>
             <List.Item>
               {submittedTx ? <List.Icon name="code" /> : <></>}
               <List.Content>
@@ -90,7 +115,7 @@ class SubmitModal extends Component {
             color="green"
             inverted
             onClick={handleSubmit}
-            disabled={submittedTx}
+            disabled={submittedTx || !depositApproved}
           >
             <Icon name="check" /> Submit
           </Button>
@@ -118,19 +143,17 @@ export default class FundingSubmission extends Component {
     amountValid: false,
     addressValid: false,
     formValid: false,
+    shareValue: null
   };
   
   async componentDidMount() {
     const { loggedInUser } = this.props;
     const moloch = await getMoloch(loggedInUser);
     const token = await getToken(loggedInUser);
-    const [ guildData, setGuildData ] = useState(null);
-    const [ getGuildData, { loading, data} ] = useLazyQuery(GET_METADATA);
 
     this.setState({
       moloch,
       token,
-      data,
     });
   }
 
@@ -193,28 +216,26 @@ export default class FundingSubmission extends Component {
   };
 
   handleSubmit = async () => {
-    const { moloch, address, title, description, amount, tribute, data } = this.state;
-    console.log(data)
-    const shares = bigNumberify(amount).div(bigNumberify(data.shareValue));
-
+    const { moloch, address, title, description, amount, shareValue } = this.state;
+    console.log(shareValue);
+    const shares = bigNumberify(amount).mul(10**9).mul(10**9).div(bigNumberify(shareValue));
     
-    console.log("shareValue " + parseFloat(data.shareValue))
+    console.log("shareValue " + parseFloat(shareValue))
     console.log("amount " + amount)
-    console.log("Shares " +shares)
+    console.log("Shares " + shares)
 
     let submittedTx;
     try {
       console.log(
         "Submitting proposal: ",
         address,
-        utils.parseEther(tribute).toString(),
         shares,
         JSON.stringify({ title, description }),
       );
       monitorTx(
         moloch.submitProposal(
           address,
-          utils.parseEther(tribute),
+          0,
           shares,
           JSON.stringify({ title, description }),
         ),
@@ -250,6 +271,24 @@ export default class FundingSubmission extends Component {
     return (
       <div id="proposal_submission">
         <Form>
+          <Query query={GET_METADATA}>
+          {({ loading, error, data }) => {
+            if (loading) return <p>Loading...</p>//<Loader size="massive" active />;
+            if (error) throw new Error(error);
+            const { guildBankValue, exchangeRate, totalShares, } = data;
+
+            const shareValue = getShareValue(totalShares, guildBankValue);
+            console.log({shareValue});
+
+            if (!this.state.shareValue && data){
+              this.setState({
+                shareValue
+              });
+            }
+
+            return null;
+          }}
+          </Query>
           <Grid centered columns={16}>
             <Grid.Column mobile={16} tablet={16} computer={12}>
               <h1> New Funding Proposal </h1>
