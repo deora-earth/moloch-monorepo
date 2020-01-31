@@ -317,7 +317,7 @@ const ProposalList = ({ isActive }) => {
                       </Link>
                     </Dropdown.Item>
                   <Dropdown.Item text='Member Proposal'>
-                      <Link to="/fundingsubmission" className="uncolored">
+                      <Link to="/funding-submission" className="uncolored">
                         Funding Proposal
                       </Link>
                     </Dropdown.Item>
