@@ -173,8 +173,6 @@ export default class FundingSubmission extends Component {
         break;
       case "address":
         addressValid = utils.isHexString(value);
-        console.log("utils.isHexString(value): ", utils.isHexString(value));
-        console.log("value: ", value);
         fieldValidationErrors.address = addressValid ? "" : "Address is invalid";
         break;
       case "description":
@@ -217,21 +215,10 @@ export default class FundingSubmission extends Component {
 
   handleSubmit = async () => {
     const { moloch, address, title, description, amount, shareValue } = this.state;
-    console.log(shareValue);
     const shares = bigNumberify(amount).mul(10**9).mul(10**9).div(bigNumberify(shareValue));
-    
-    console.log("shareValue " + parseFloat(shareValue))
-    console.log("amount " + amount)
-    console.log("Shares " + shares)
 
     let submittedTx;
     try {
-      console.log(
-        "Submitting proposal: ",
-        address,
-        shares,
-        JSON.stringify({ title, description }),
-      );
       monitorTx(
         moloch.submitProposal(
           address,
@@ -240,14 +227,15 @@ export default class FundingSubmission extends Component {
           JSON.stringify({ title, description }),
         ),
       );
+
+      this.setState({
+        submittedTx,
+      });
+      
     } catch (e) {
       console.error(e);
       alert("Error processing proposal");
     }
-
-    this.setState({
-      submittedTx,
-    });
   };
 
   render() {
@@ -273,12 +261,11 @@ export default class FundingSubmission extends Component {
         <Form>
           <Query query={GET_METADATA}>
           {({ loading, error, data }) => {
-            if (loading) return <p>Loading...</p>//<Loader size="massive" active />;
+            if (loading) return <p>Loading...</p>
             if (error) throw new Error(error);
-            const { guildBankValue, exchangeRate, totalShares, } = data;
+            const { guildBankValue, totalShares, } = data;
 
             const shareValue = getShareValue(totalShares, guildBankValue);
-            console.log({shareValue});
 
             if (!this.state.shareValue && data){
               this.setState({
@@ -352,9 +339,6 @@ export default class FundingSubmission extends Component {
             </Grid.Row>
             <Grid.Row>
               <Grid.Column mobile={16} tablet={8} computer={8} className="submit_button">
-                {/* <Button size="large" color="red" onClick={this.handleSubmit}>
-                  Submit Proposal
-                </Button> */}
                 <SubmitModal
                   valid={formValid}
                   tribute={tribute}
