@@ -67,70 +67,70 @@ class SubmitModal extends Component {
     const { loading, depositApproved, open } = this.state;
     const { handleSubmit, submittedTx } = this.props;
     return (
-    <div id="proposal_submission">
-      <Modal 
-        trigger={
-          <Button size="large" color="green" onClick={this.handleOpen} >
-            <Icon name='send' color="white"/>  Submit a new proposal 
+      <div id="proposal_submission">
+        <Modal
+          trigger={
+            <Button size="large" color="green" onClick={this.handleOpen} >
+              <Icon name='send' color="white" />  Submit a new proposal
           </Button>
-        }
-        basic
-        size="small"
-        open={open}
-      >
-        <Header content="Submit Proposal" />
-        <Modal.Content>
-          <List>
-            <List.Item>
-              {loading ? (
-                <List.Icon name="time" />
-              ) : depositApproved ? (
-                <List.Icon name="check circle" />
-              ) : (
-                <List.Icon name="x" />
-              )}
-              <List.Content>{DEPOSIT_WETH} DAI Deposit Approved</List.Content>
-            </List.Item>
-            <List.Item>
-              {submittedTx ? <List.Icon name="code" /> : <></>}
-              <List.Content>
-                {submittedTx ? (
-                  <a
-                    href={`https://etherscan.io/tx/${submittedTx.hash}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    View Transaction on Etherscan
-                  </a>
+          }
+          basic
+          size="small"
+          open={open}
+        >
+          <Header content="Submit Proposal" />
+          <Modal.Content>
+            <List>
+              <List.Item>
+                {loading ? (
+                  <List.Icon name="time" />
+                ) : depositApproved ? (
+                  <List.Icon name="check circle" />
                 ) : (
-                  <></>
-                )}
-              </List.Content>
-            </List.Item>
-          </List>
-        </Modal.Content>
-        <Modal.Actions>
-          <Button
-            basic
-            color="green"
-            inverted
-            onClick={handleSubmit}
-            disabled={submittedTx || !depositApproved}
-          >
-            <Icon name="check" /> Submit
+                      <List.Icon name="x" />
+                    )}
+                <List.Content>{DEPOSIT_WETH} DAI Deposit Approved</List.Content>
+              </List.Item>
+              <List.Item>
+                {submittedTx ? <List.Icon name="code" /> : <></>}
+                <List.Content>
+                  {submittedTx ? (
+                    <a
+                      href={`https://etherscan.io/tx/${submittedTx.hash}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      View Transaction on Etherscan
+                  </a>
+                  ) : (
+                      <></>
+                    )}
+                </List.Content>
+              </List.Item>
+            </List>
+          </Modal.Content>
+          <Modal.Actions>
+            <Button
+              basic
+              color="green"
+              inverted
+              onClick={handleSubmit}
+              disabled={submittedTx || !depositApproved}
+            >
+              <Icon name="check" /> Submit
           </Button>
-          <Button basic color="red" inverted onClick={this.handleClose}>
-            <Icon name="remove" /> Close
+            <Button basic color="red" inverted onClick={this.handleClose}>
+              <Icon name="remove" /> Close
           </Button>
-        </Modal.Actions>
-      </Modal>
-    </div>
+          </Modal.Actions>
+        </Modal>
+      </div>
     );
   }
 }
 
 export default class FundingSubmission extends Component {
-  
+
   state = {
     address: "",
     title: "",
@@ -145,7 +145,7 @@ export default class FundingSubmission extends Component {
     formValid: false,
     shareValue: null
   };
-  
+
   async componentDidMount() {
     const { loggedInUser } = this.props;
     const moloch = await getMoloch(loggedInUser);
@@ -215,7 +215,7 @@ export default class FundingSubmission extends Component {
 
   handleSubmit = async () => {
     const { moloch, address, title, description, amount, shareValue } = this.state;
-    const shares = bigNumberify(amount).mul(10**9).mul(10**9).div(bigNumberify(shareValue));
+    const shares = bigNumberify(amount).mul(10 ** 9).mul(10 ** 9).div(bigNumberify(shareValue));
 
     let submittedTx;
     try {
@@ -231,7 +231,7 @@ export default class FundingSubmission extends Component {
       this.setState({
         submittedTx,
       });
-      
+
     } catch (e) {
       console.error(e);
       alert("Error processing proposal");
@@ -260,21 +260,21 @@ export default class FundingSubmission extends Component {
       <div id="proposal_submission">
         <Form>
           <Query query={GET_METADATA}>
-          {({ loading, error, data }) => {
-            if (loading) return <p>Loading...</p>
-            if (error) throw new Error(error);
-            const { guildBankValue, totalShares, } = data;
+            {({ loading, error, data }) => {
+              if (loading) return <p>Loading...</p>
+              if (error) throw new Error(error);
+              const { guildBankValue, totalShares, } = data;
 
-            const shareValue = getShareValue(totalShares, guildBankValue);
+              const shareValue = getShareValue(totalShares, guildBankValue);
 
-            if (!this.state.shareValue && data){
-              this.setState({
-                shareValue
-              });
-            }
+              if (!this.state.shareValue && data) {
+                this.setState({
+                  shareValue
+                });
+              }
 
-            return null;
-          }}
+              return null;
+            }}
           </Query>
           <Grid centered columns={16}>
             <Grid.Column mobile={16} tablet={16} computer={12}>

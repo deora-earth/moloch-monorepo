@@ -63,74 +63,74 @@ class SubmitModal extends Component {
     const { loading, beneficiaryApproved, depositApproved, open } = this.state;
     const { handleSubmit, submittedTx } = this.props;
     return (
-    <div id="proposal_submission">
-      <Modal 
-        trigger={
-          <Button size="large" color="green" onClick={this.handleOpen} >
-            <Icon name='send' color="white"/>  Submit a new proposal 
+      <div id="proposal_submission">
+        <Modal
+          trigger={
+            <Button size="large" color="green" onClick={this.handleOpen} >
+              <Icon name='send' color="white" />  Submit a new proposal
           </Button>
-        }
-        basic
-        size="small"
-        open={open}
-      >
-        <Header content="Submit Proposal" />
-        <Modal.Content>
-          <List>
-            <List.Item>
-              {loading ? (
-                <List.Icon name="time" />
-              ) : depositApproved ? (
-                <List.Icon name="check circle" />
-              ) : (
-                <List.Icon name="x" />
-              )}
-              <List.Content>{DEPOSIT_WETH} DAI Deposit Approved</List.Content>
-            </List.Item>
-            <List.Item>
-              {loading ? (
-                <List.Icon name="time" />
-              ) : beneficiaryApproved ? (
-                <List.Icon name="check circle" />
-              ) : (
-                <List.Icon name="x" />
-              )}
-              <List.Content>Tribute Approved By Beneficiary</List.Content>
-            </List.Item>
-            <List.Item>
-              {submittedTx ? <List.Icon name="code" /> : <></>}
-              <List.Content>
-                {submittedTx ? (
-                  <a
-                    href={`https://etherscan.io/tx/${submittedTx.hash}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    View Transaction on Etherscan
-                  </a>
+          }
+          basic
+          size="small"
+          open={open}
+        >
+          <Header content="Submit Proposal" />
+          <Modal.Content>
+            <List>
+              <List.Item>
+                {loading ? (
+                  <List.Icon name="time" />
+                ) : depositApproved ? (
+                  <List.Icon name="check circle" />
                 ) : (
-                  <></>
-                )}
-              </List.Content>
-            </List.Item>
-          </List>
-        </Modal.Content>
-        <Modal.Actions>
-          <Button
-            basic
-            color="green"
-            inverted
-            onClick={handleSubmit}
-            disabled={submittedTx || !depositApproved || !beneficiaryApproved}
-          >
-            <Icon name="check" /> Submit
+                      <List.Icon name="x" />
+                    )}
+                <List.Content>{DEPOSIT_WETH} DAI Deposit Approved</List.Content>
+              </List.Item>
+              <List.Item>
+                {loading ? (
+                  <List.Icon name="time" />
+                ) : beneficiaryApproved ? (
+                  <List.Icon name="check circle" />
+                ) : (
+                      <List.Icon name="x" />
+                    )}
+                <List.Content>Tribute Approved By Beneficiary</List.Content>
+              </List.Item>
+              <List.Item>
+                {submittedTx ? <List.Icon name="code" /> : <></>}
+                <List.Content>
+                  {submittedTx ? (
+                    <a
+                      href={`https://etherscan.io/tx/${submittedTx.hash}`}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      View Transaction on Etherscan
+                  </a>
+                  ) : (
+                      <></>
+                    )}
+                </List.Content>
+              </List.Item>
+            </List>
+          </Modal.Content>
+          <Modal.Actions>
+            <Button
+              basic
+              color="green"
+              inverted
+              onClick={handleSubmit}
+              disabled={submittedTx || !depositApproved || !beneficiaryApproved}
+            >
+              <Icon name="check" /> Submit
           </Button>
-          <Button basic color="red" inverted onClick={this.handleClose}>
-            <Icon name="remove" /> Close
+            <Button basic color="red" inverted onClick={this.handleClose}>
+              <Icon name="remove" /> Close
           </Button>
-        </Modal.Actions>
-      </Modal>
-    </div>
+          </Modal.Actions>
+        </Modal>
+      </div>
     );
   }
 }

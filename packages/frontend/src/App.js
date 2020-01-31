@@ -1,7 +1,7 @@
 import { useQuery } from "@apollo/react-hooks";
 import { HttpLink, ApolloClient, InMemoryCache } from "apollo-boost";
 import gql from "graphql-tag";
-import React, { useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Route, Switch, Redirect } from "react-router-dom";
 import { ApolloProvider } from "react-apollo";
 import { ToastMessage } from "rimble-ui";
@@ -86,8 +86,8 @@ const Routes = () => {
                   loggedInUser ? (
                     <ProposalSubmission {...props} loggedInUser={loggedInUser} />
                   ) : (
-                    <Redirect to={{ pathname: "/" }} />
-                  )
+                      <Redirect to={{ pathname: "/" }} />
+                    )
                 }
               />
               <Route
@@ -96,8 +96,8 @@ const Routes = () => {
                   loggedInUser ? (
                     <FundingSubmission {...props} loggedInUser={loggedInUser} />
                   ) : (
-                    <Redirect to={{ pathname: "/" }} />
-                  )
+                      <Redirect to={{ pathname: "/" }} />
+                    )
                 }
               />
               <Route component={props => <Home {...props} loggedInUser={loggedInUser} />} />
@@ -136,13 +136,13 @@ const App = () => {
       </Router>
     </ApolloProvider>
   ) : (
-    <>
-      <Background />
-      <Dimmer active>
-        <Loader size="massive" />
-      </Dimmer>
-    </>
-  );
+      <>
+        <Background />
+        <Dimmer active>
+          <Loader size="massive" />
+        </Dimmer>
+      </>
+    );
 };
 
 export default App;
