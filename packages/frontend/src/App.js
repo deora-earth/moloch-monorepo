@@ -91,7 +91,7 @@ const Routes = () => {
                 }
               />
               <Route
-                path="/fundingsubmission"
+                path="/funding-submission"
                 render={props =>
                   loggedInUser ? (
                     <FundingSubmission {...props} loggedInUser={loggedInUser} />
