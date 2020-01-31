@@ -312,7 +312,7 @@ const ProposalList = ({ isActive }) => {
       menuItem: <Dropdown text="New Proposal" id="newPorposalDropdown" disabled={!isActive} button className="grey" >
                   <Dropdown.Menu>
                     <Dropdown.Item text='Member Proposal'>
-                      <Link to="/proposalsubmission" className="uncolored">
+                      <Link to="/proposal-submission" className="uncolored">
                         Member Proposal
                       </Link>
                     </Dropdown.Item>
