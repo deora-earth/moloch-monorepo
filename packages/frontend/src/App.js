@@ -81,7 +81,7 @@ const Routes = () => {
                 render={props => <MemberList {...props} loggedInUser={loggedInUser} />}
               />
               <Route
-                path="/proposalsubmission"
+                path="/proposal-submission"
                 render={props =>
                   loggedInUser ? (
                     <ProposalSubmission {...props} loggedInUser={loggedInUser} />
