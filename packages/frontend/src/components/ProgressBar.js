@@ -147,6 +147,27 @@ const ProgressBar = ({ yes, no }) => {
     <>
       <div style={{ position: "relative" }}>
         <CustomProgressBar precision={1} progress='value' pair={[{value: yes, color: 'green'},{value: no, color: 'red'}]} total={total} />
+        <Progress
+          percent={percentNo}
+          color="red"
+          size="medium"
+          progress='percent'
+          textAlign="right"
+          style={{
+            position: "absolute",
+            top: "0",
+            width: "100%",
+          }}  
+          className={no === 0 ? "hide-bar" : ""}
+        />
+        <Progress
+          percent={percentYes}
+          color="green"
+          size="medium"
+          progress='percent'
+          textAlign="right"
+          className={yes === 0 ? "hide-bar" : ""}
+        />
       </div>
       <Grid columns="equal" >
         <Grid.Column floated="left" id="amountYesNo"><p>{yes} Yes Votes</p></Grid.Column>
