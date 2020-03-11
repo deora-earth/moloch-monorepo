@@ -282,7 +282,7 @@ export default class ProposalSubmission extends Component {
             </Grid.Column>
             <Grid.Row stretched>
               <Grid.Column mobile={16} tablet={16} computer={12}>
-                <Input
+                <Form.Input
                   id="titleInput"
                   name="title"
                   size="big"
