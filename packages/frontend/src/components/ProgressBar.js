@@ -118,13 +118,14 @@ class CustomProgressBar extends React.Component{
       console.log({leftPercent, rightPercent})
 
       return (<ElementType className={classes} data-left={Math.floor(leftPercent)} data-right={Math.floor(rightPercent)}>
-          <div className={`bar bar--left bar--${left.color}`} style={{width: `${leftPercent}%`}}>
+          {leftPercent > 0 &&  
+          <div className={`bar bar--left bar--${left.color}`} style={{width: `${leftPercent}%`}}> 
             {this.renderProgress(left.value, true)}
-          </div>
+          </div> }
+          {rightPercent > 0 && 
           <div className={`bar bar--right bar--${right.color}`} style={{width: `${rightPercent}%`}}>
             {this.renderProgress(right.value, true)}
-          </div>
-          {this.renderLabel()}
+          </div> }
         </ElementType>
       )
     }
@@ -147,25 +148,6 @@ const ProgressBar = ({ yes, no }) => {
     <>
       <div style={{ position: "relative" }}>
         <CustomProgressBar precision={1} progress='value' pair={[{value: yes, color: 'green'},{value: no, color: 'red'}]} total={total} />
-        <Progress
-          percent={percentNo}
-          color="red"
-          size="medium"
-          progress='percent'
-          style={{
-            position: "absolute",
-            top: "0",
-            width: "100%",
-          }}  
-          className={no === 0 ? "hide-bar" : ""}
-        />
-        <Progress
-          percent={percentYes}
-          color="green"
-          size="medium"
-          progress='percent'
-          className={yes === 0 ? "hide-bar" : ""}
-        />
       </div>
       <Grid columns="equal" >
         <Grid.Column floated="left" id="amountYesNo"><p>{yes} Yes Votes</p></Grid.Column>

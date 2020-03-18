@@ -85,7 +85,7 @@ class SubmitModal extends Component {
                 ) : (
                       <List.Icon name="x" />
                     )}
-                <List.Content>{DEPOSIT_WETH} DAI Deposit Approved</List.Content>
+                <List.Content>100 DAI Deposit Approved</List.Content>
               </List.Item>
               <List.Item>
                 {loading ? (
