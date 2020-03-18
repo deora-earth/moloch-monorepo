@@ -329,7 +329,7 @@ export default class FundingSubmission extends Component {
                         placeholder="https://discourse.rosebud.fund/c/proposals/myproposal"
                         rows={15}
                         type="url"
-                        pattern="https://.*"
+                        pattern="https://discourse.rosebud.fund/.*"
                         onChange={this.handleInput}
                         value={description}
                         error={!descriptionValid}
