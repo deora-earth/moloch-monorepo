@@ -323,11 +323,13 @@ export default class FundingSubmission extends Component {
                 <Grid columns="equal">
                   <Grid.Column>
                     <Segment className="blurred box">
-                      <Form.TextArea
+                      <p> Add a link to your Proposal from <a href="https://discourse.rosebud.fund/">our Forum </a> </p>
+                      <Form.Input
                         name="description"
-                        label="Description"
-                        placeholder="Type here"
+                        placeholder="https://discourse.rosebud.fund/c/proposals/myproposal"
                         rows={15}
+                        type="url"
+                        pattern="https://.*"
                         onChange={this.handleInput}
                         value={description}
                         error={!descriptionValid}
