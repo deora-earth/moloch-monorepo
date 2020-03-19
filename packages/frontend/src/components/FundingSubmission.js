@@ -327,9 +327,9 @@ export default class FundingSubmission extends Component {
                       <Form.Input
                         name="description"
                         placeholder="https://discourse.rosebud.fund/c/proposals/myproposal"
-                        rows={15}
+                        rows={1}
                         type="url"
-                        pattern="https://discourse.rosebud.fund/.*"
+                        pattern="^https:\/\/discourse\.rosebud\.fund\/.*"
                         onChange={this.handleInput}
                         value={description}
                         error={!descriptionValid}
