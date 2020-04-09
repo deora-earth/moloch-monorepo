@@ -215,61 +215,7 @@ const ProposalList = ({ isActive }) => {
 
   const panes = [
     {
-      menuItem: `Voting Period (${votingPeriod.length})`,
-      render: () => (
-        <Tab.Pane attached={false}>
-          <Grid columns={3}>
-            {votingPeriod.map((p, index) => (
-              <ProposalCard
-                exchangeRate={exchangeRate}
-                shareValue={shareValue}
-                totalShares={+totalShares}
-                proposal={p}
-                key={index}
-              />
-            ))}
-          </Grid>
-        </Tab.Pane>
-      ),
-    },
-    {
-      menuItem: `Grace Period (${gracePeriod.length})`,
-      render: () => (
-        <Tab.Pane attached={false}>
-          <Grid columns={3}>
-            {gracePeriod.map((p, index) => (
-              <ProposalCard
-                exchangeRate={exchangeRate}
-                shareValue={shareValue}
-                totalShares={+totalShares}
-                proposal={p}
-                key={index}
-              />
-            ))}
-          </Grid>
-        </Tab.Pane>
-      ),
-    },
-    {
-      menuItem: `Ready For Processing (${readyForProcessing.length})`,
-      render: () => (
-        <Tab.Pane attached={false}>
-          <Grid columns={3}>
-            {readyForProcessing.map((p, index) => (
-              <ProposalCard
-                exchangeRate={exchangeRate}
-                shareValue={shareValue}
-                totalShares={+totalShares}
-                proposal={p}
-                key={index}
-              />
-            ))}
-          </Grid>
-        </Tab.Pane>
-      ),
-    },
-    {
-      menuItem: `In Queue (${inQueue.length})`,
+      menuItem: `Study (${inQueue.length})`,
       render: () => (
         <Tab.Pane attached={false}>
           <Grid columns={3}>
@@ -287,7 +233,61 @@ const ProposalList = ({ isActive }) => {
       ),
     },
     {
-      menuItem: `Completed (${completedLoading ? "..." : completedProposals.length})`,
+      menuItem: `Vote (${votingPeriod.length})`,
+      render: () => (
+        <Tab.Pane attached={false}>
+          <Grid columns={3}>
+            {votingPeriod.map((p, index) => (
+              <ProposalCard
+                exchangeRate={exchangeRate}
+                shareValue={shareValue}
+                totalShares={+totalShares}
+                proposal={p}
+                key={index}
+              />
+            ))}
+          </Grid>
+        </Tab.Pane>
+      ),
+    },
+    {
+      menuItem: `Review (${gracePeriod.length})`,
+      render: () => (
+        <Tab.Pane attached={false}>
+          <Grid columns={3}>
+            {gracePeriod.map((p, index) => (
+              <ProposalCard
+                exchangeRate={exchangeRate}
+                shareValue={shareValue}
+                totalShares={+totalShares}
+                proposal={p}
+                key={index}
+              />
+            ))}
+          </Grid>
+        </Tab.Pane>
+      ),
+    },
+    {
+      menuItem: `Confirm (${readyForProcessing.length})`,
+      render: () => (
+        <Tab.Pane attached={false}>
+          <Grid columns={3}>
+            {readyForProcessing.map((p, index) => (
+              <ProposalCard
+                exchangeRate={exchangeRate}
+                shareValue={shareValue}
+                totalShares={+totalShares}
+                proposal={p}
+                key={index}
+              />
+            ))}
+          </Grid>
+        </Tab.Pane>
+      ),
+    },
+    {
+      menuItem: `Check (${completedLoading ? "..." : completedProposals.length})`,
       render: () => (
         <Tab.Pane attached={false}>
           {completedLoading ? (

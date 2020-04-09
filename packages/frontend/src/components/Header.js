@@ -63,7 +63,7 @@ const MainMenu = ({
         <Dropdown.Item
           icon="dollar"
           className='item'
-          content="Ragequit"
+          content="Exit"
           onClick={() => {
             _handleOpenDropdown();
             onLoadWithdrawLootToken();
@@ -455,7 +455,7 @@ export default ({ loggedInUser, client }) => {
     <div id="header">
       <Menu>
         <Menu.Item header>
-          <Link to="/" className="logo"> ROSEBUD DAO</Link>
+          <img src='rosebudlogo.png' />
         </Menu.Item>
         <Menu.Item 
           name='Home'

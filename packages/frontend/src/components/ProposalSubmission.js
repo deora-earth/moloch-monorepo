@@ -25,7 +25,7 @@ class SubmitModal extends Component {
   };
 
   handleOpen = async () => {
-    const { token, address, tribute, moloch, loggedInUser, valid } = this.props;
+    const { token, address, moloch, loggedInUser, valid } = this.props;
     if (!valid) {
       alert("Please fill any missing fields.");
       return;
@@ -33,6 +33,12 @@ class SubmitModal extends Component {
     this.setState({
       open: true,
     });
+
+    const tribute = this.props;
+    if (!valid) {
+      alert("Your Tribute has to be at least 100 DAI");
+      return;
+    }
 
     const beneficiaryAllowance = await token.allowance(address, moloch.address);
     let beneficiaryApproved = false;
