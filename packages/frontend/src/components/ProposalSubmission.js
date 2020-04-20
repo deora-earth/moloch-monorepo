@@ -191,7 +191,7 @@ export default class ProposalSubmission extends Component {
         fieldValidationErrors.shares = sharesValid ? "" : "Shares is invalid";
         break;
       case "tribute":
-        tributeValid = value >= 5;
+        tributeValid = value >= 1;
         fieldValidationErrors.tribute = tributeValid ? "" : "Tribute is invalid";
         break;
       default:
@@ -212,6 +212,7 @@ export default class ProposalSubmission extends Component {
 
   validateForm = () => {
     const { titleValid, descriptionValid, sharesValid, tributeValid, addressValid } = this.state;
+    console.log('validate form: ', titleValid, descriptionValid, sharesValid, tributeValid, addressValid);
     this.setState({
       formValid: titleValid && descriptionValid && sharesValid && tributeValid && addressValid,
     });
