@@ -17,7 +17,7 @@ const ProposalCard = ({ proposal }) => {
     <Grid.Column mobile={16} tablet={8} computer={5}>
       <Link to={{ pathname: `/proposals/${id}` }} className="uncolored">
         <Segment raised>
-          <Label as='a' color='white' ribbon>
+          <Label as='a' color='black' ribbon>
             <h4>{getProposalCountdownText(proposal)}</h4>
           </Label>
           <p className="name">{proposal.title ? proposal.title : "N/A"}</p>

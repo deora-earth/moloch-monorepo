@@ -1,49 +1,49 @@
 body {
-  color: rgb(10, 1, 48);
+  color: white;
   font-weight: bold;
   font-family: 'Open Sans', sans-serif !important;
-  background-color: #ececec;
+  background-color: rgba(0, 0, 0, 0.699);
   margin: 0px;
   padding: 0px;
 }
 
 .amount {
   font-family: 'Open Sans', sans-serif;
-  color: rgb(10, 1, 48) !important;
+  color: white !important;
 }
 
 .subtext {
-  color: rgb(10, 1, 48) !important;
+  color: white !important;
   width: 100% !important;
 }
 
 .subtitle {
   font-size: 20px;
-  color: rgb(10, 1, 48) !important;
+  color: white !important;
 }
 
 .threeboxProfileHover__style_boxShortAddress {
-  color: rgb(10, 1, 48);
+  color: white;
 }
 
 .ui.statistic>.value, .ui.statistics .statistic>.value {
   @media screen and (max-width: 475px) {
     font-size: 2.5rem !important;
-    color: rgb(10, 1, 48) !important;
+    color: white !important;
   }
 }
 
 .title {
   font-size: 30px;
   line-height: 15px;
-  color: rgb(10, 1, 48) !important;
+  color: white !important;
 }
 
 .button {
   padding: 10px 15px !important;
   color: whitesmoke !important;
   &.grey {
-    background: rgb(10, 1, 48) !important;
+    background: rgb(0, 0, 0) !important;
     border-radius: 3px;
   }
 }
@@ -60,11 +60,11 @@ body {
 }
 
 .uncolored {
-  color: rgb(10, 1, 48) !important;
+  color: white !important;
 }
 
 .blurred {
-  background: white !important;
+  background: rgba(0, 0, 0, 0.699) !important;
 }
 
 .transparent {
@@ -77,7 +77,7 @@ body {
 
 #background {
   .white {
-    background-color: #ececec;
+    background-color: rgba(0, 0, 0, 0.699);
     position: fixed;
     top: 0;
     left: 0;
@@ -85,38 +85,39 @@ body {
     width: 100%;
     z-index: -2;
     background: url("assets/rosebudBg.jpg") 0 / cover fixed;
-    background-repeat: repeat !important;
+    background-repeat: no-repeat !important;
   }
 }
 
 .navElement {
-  color: rgb(10, 1, 48) !important;
+  color: white !important;
     font-size: 18px !important;
 }
 
 .navElement:hover {
-  color:  rgb(53, 36, 133) !important;
+  color:  red !important;
   cursor: pointer;
 }
 
 #header {
   height: 90px;
   width: 100%;
-  color: rgb(10, 1, 48) !important;
+  color: white !important;
   margin-top: 50px;
 
   .menu {
     font-size: 18px;
-    color: rgb(10, 1, 48) !important
+    color:white !important;
+    background-color: rgba(0, 0, 0, 0.699);
   }
 
   .right_dropdown>.text {
-    color: rgb(10, 1, 48) !important;
+    color: white !important;
   }
   .logo {
     font-size: 20px;
     text-decoration: none;
-    color: rgb(10, 1, 48) !important;
+    color: white !important;
     font-weight: 600;
     letter-spacing: 0.08em;
     a {
@@ -126,13 +127,14 @@ body {
   .dropdown {
     .label {
       font-size: 20px;
+      color: white;
     }
     .menu {
-      background-color: white !important;
+      background-color: rgba(0, 0, 0, 0.699) !important;
       padding: 10px 20px;
       font-size: 15px;
       input {
-        color: rgb(10, 1, 48);
+        color: white;
         margin-bottom: 5px;
         border-color:lightgray;
       }
@@ -142,18 +144,18 @@ body {
       }
       .item {
         padding: 15px 10px !important;
-        color: rgb(10, 1, 48);
+        color: white;
       }
       .item:hover:not(.submenu) {
-        color:  rgb(53, 36, 133);
+        color:  red;
         cursor: pointer;
       }
       .link {
-        color: rgb(10, 1, 48) !important;
+        color: white !important;
       }
 
       .link:hover {
-        color:  rgb(53, 36, 133);
+        color:  red;
         cursor: pointer;
       }
 
@@ -193,15 +195,16 @@ body {
     }
   }
   .text_link {
-    color: rgb(10, 1, 48) !important;
+    color: white !important;
   }
 
   .text_link:hover {
-    color:  rgb(53, 36, 133);
+    color:  red;
     cursor: pointer;
   }
 
 #homeSegment {
+  background-color: rgba(0, 0, 0, 0.699);
   height: 295px;
   width: 100%;
 }
@@ -212,6 +215,7 @@ body {
   text-align: center;
   width: 100%;
   margin-top: 25px;
+  background-color: rgba(0, 0, 0, 0.699);
 }
 
   
@@ -236,7 +240,7 @@ body {
     .blurred {
       padding-left: 10px !important;
       padding-right: 10px !important;
-      background-color: white;
+      background-color: rgba(0, 0, 0, 0.699);
     }
   }
   
@@ -271,20 +275,14 @@ body {
   padding: 20px;
   margin-bottom: 0;
   letter-spacing: .10em;
+  color: white;
 }
 
 #bankBalance {
   font-weight: bold;
   padding: 15px;
   letter-spacing: .15em;
-  color: rgb(10, 1, 48) !important;
-
-  text-shadow: 
-    -1px 2px 1px #bdbdbd2c, 
-    -2px 4px 1px #bdbdbd2c, 
-    -3px 6px 1px #bdbdbd2c,
-    -4px 8px 1px #bdbdbd2c,
-
+  color: white !important;
 }
 
 #ethExchange {
@@ -296,7 +294,7 @@ body {
 
 #subValue {
   font-weight: 600;
-  color: rgb(10, 1, 48) !important;
+  color: white !important;
 }
 
 #subText {
@@ -308,11 +306,11 @@ body {
   width: 100%;
   .name {
     margin: 10px 30px 0;
-    color: rgb(10, 1, 48) !important;
+    color: black !important;
   }
   .divider {
     margin: 0;
-    color: rgb(10, 1, 48) !important; 
+    color: black !important; 
   }
   .members_row {
     .member {
@@ -342,16 +340,18 @@ body {
 #EldersSegment {
   padding: 30px 20px 50px;
   margin-top: -10px;
+  background-color: rgba(0, 0, 0, 0.699);
 }
 
 #ContributorsSegment {
   padding: 30px 20px 50px;
+  background-color: rgba(0, 0, 0, 0.699);
 }
 
 #member_detail {
   .details {
     margin-top: 10px;
-    color: rgb(10, 1, 48) !important;
+    color: white;
   }
   .blurred.box {
     padding: 20px 60px;
@@ -367,6 +367,7 @@ body {
   .user {
     .segment {
       height: 100%;
+      background-color: transparent;
     }
   }
   .user, .proposals{
@@ -382,7 +383,7 @@ body {
     }
     p {
       font-size: 1rem;
-      color: rgb(10, 1, 48) !important;
+      color: black !important;
     }
     .dot {
       margin-right: 10px;
@@ -451,7 +452,7 @@ body {
         left: initial;
         top: initial;
         right: initial;
-        color: #fff;
+        color: #000;
         font-weight: bold;
       }
     }
@@ -463,10 +464,14 @@ body {
 }
 
 #proposal_list {
+  .ui.raised.segment {
+    background-color: rgba(0, 0, 0, 0.699) !important;
+    border: 2px solid black;
+  }
   .name {
     padding-top: 13px;
     font-size: 23px;
-    color: rgb(10, 1, 48) !important;
+    color: white !important;
     overflow-y: auto;
     -ms-overflow-style: none;  // IE 10+
     scrollbar-width: none;  // Firefox
@@ -515,7 +520,7 @@ body {
   #newPorposalDropdown{
     position: absolute;
     margin-left: 88.4%;
-    color: rgb(10, 1, 48);
+    color: white;
   }
 
   .ui.secondary.menu {
@@ -528,12 +533,12 @@ body {
     }
 
     .item {
-      color: rgb(10, 1, 48);
+      color: white;
       font-size: 15px !important;
     }
 
     .item:hover {
-      color: rgb(53, 36, 133) !important;
+      color: red !important;
     }
 
     .active.item {
@@ -555,6 +560,7 @@ body {
 
   .ui.segment.active.tab {
     padding: 30px;
+    background-color: rgba(0, 0, 0, 0.699) !important;
   }
 
   .ui.small.progress.hide-bar {
@@ -594,6 +600,7 @@ body {
     padding-bottom: 5px;
     font-size: 20px;
     line-height: 15px;
+    color: white;
   }
   .amount.right {
     float: right;
@@ -604,7 +611,7 @@ body {
   .address {
     font-size: 20px;
     line-height: 15px;
-    color: #0a0130;
+    color: white;
   }
   .grace {
     opacity: 0.5;
@@ -620,15 +627,21 @@ body {
     }
 
   }
+  .ui.segment {
+  background-color: rgba(0, 0, 0, 0.699) !important;
+  }
+
   .ui.raised.segment {
     padding: 25px !important;
     margin-top: 20px;
     margin-bottom: 30px;
+    background-color: rgba(0, 0, 0, 0.699) !important;
   }
   .description {
     text-align: justify !important;
     min-height: 12vh;
     margin-top: 20px;
+    
   }
 
   .member_list {
@@ -655,6 +668,7 @@ body {
 
   .segment {
     min-width: 100% !important;
+    background-color: rgba(0, 0, 0, 0.699) !important;
   }
 
   .ui.small.progress.hide-bar {
@@ -739,7 +753,7 @@ body {
     padding: 25px !important;
   }
   .delegateKey {
-    color: rgb(10, 1, 48);
+    color: white;
     font-size: small;
     padding-top: 10px;
   }
@@ -748,13 +762,13 @@ body {
 #proposal_submission {
   padding-top: 30px;
   input, textarea, select, .dropdown {
-    background-color: white;
-    color: rgb(53, 36, 133) !important;
-    border-color: lightgray ; 
+    background-color: rgba(0, 0, 0, 0.699);
+    color: white !important;
+    border-color: black ; 
     font-size: 18px;
   }
   label {
-    color: rgb(10, 1, 48) !important;
+    color: white !important;
     font-weight: 600 !important;
     font-size: 18px !important;
     padding: 5px;
@@ -777,7 +791,7 @@ body {
   }
   .blurred.box {
     height: 100%;
-    background-color: white;
+    background-color: rgba(0, 0, 0, 0.699);
   }
   .delete_icon {
     margin-top: 8px;
@@ -829,7 +843,7 @@ body {
     .blurred.box {
       padding-left: 20px !important;
       padding-right: 20px !important;
-      background-color: white;
+      background-color: rgba(0, 0, 0, 0.699);
     }
 
     .asset_field_grid {
