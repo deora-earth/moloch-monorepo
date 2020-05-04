@@ -234,6 +234,7 @@ body {
         line-height: 20px !important;
       }
       .subtext {
+        color: white !important; 
         margin-bottom: 5px !important;
       }
     }
@@ -260,6 +261,7 @@ body {
         line-height: 20px !important;
       }
       .subtext {
+        color: white !important;
         margin-bottom: 5px !important;
       }
     }
@@ -299,7 +301,7 @@ body {
 
 #subText {
   margin-top: 5px;
-  color: rgba(144, 145, 151, 0.507);
+  color: white;
 }
 
 #member_list {
@@ -383,7 +385,7 @@ body {
     }
     p {
       font-size: 1rem;
-      color: black !important;
+      color: white !important;
     }
     .dot {
       margin-right: 10px;
@@ -683,6 +685,7 @@ body {
     height: 0vh !important;
     padding-top: 10px;
     margin-bottom: -40px !important;
+    color: white;
   }
   
   @media screen and (min-width: 320px) and (max-width: 375px) { 
