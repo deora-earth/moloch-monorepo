@@ -144,7 +144,7 @@ body {
       }
       .item {
         padding: 15px 10px !important;
-        color: white;
+        color: white !important;
       }
       .item:hover:not(.submenu) {
         color:  red;
@@ -308,11 +308,11 @@ body {
   width: 100%;
   .name {
     margin: 10px 30px 0;
-    color: black !important;
+    color: white !important;
   }
   .divider {
     margin: 0;
-    color: black !important; 
+    color: white !important; 
   }
   .members_row {
     .member {
@@ -454,7 +454,7 @@ body {
         left: initial;
         top: initial;
         right: initial;
-        color: #000;
+        color: white;
         font-weight: bold;
       }
     }
