@@ -18,7 +18,7 @@ h4 {
 }
 
 .ContainerMoloch {
-  background: white;
+  background: #000;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -71,7 +71,7 @@ h4 {
 .GraphContainer {
   height: 600px;
   width: 100%;
-  background: white;
+  background: #000;
   border-radius: 10px;
 }
 
@@ -89,7 +89,7 @@ h4 {
 
 .Proposal {
   flex: 1;
-  background:white;
+  background:#000;
   border-radius: 10px;
   padding: 25px;
   cursor: pointer;

@@ -147,8 +147,8 @@ const ProposalDetail = ({ loggedInUser, match }) => {
 
   return (
     <div id="proposal_detail">
-      <Segment>
-        <Label as='a' color='white' ribbon>
+      <Segment raised>
+        <Label as='a' color='black' ribbon>
           <h4>{getProposalCountdownText(proposal)}</h4>
         </Label>
 

@@ -128,7 +128,7 @@ const MemberList = props => {
       <Segment id="EldersSegment">
         <Grid>
           <Grid.Row>
-            <h3 style={{ paddingLeft: "1rem" }}>ELDERS (100+ SHARES)</h3>
+            <h3 style={{ paddingLeft: "1rem" }}>Citizen Kanes (majority shareholders)</h3>
           </Grid.Row>
           <Grid.Row className="members_row">
             <Elders />
@@ -139,7 +139,7 @@ const MemberList = props => {
       <Segment id="ContributorsSegment">
         <Grid>
           <Grid.Row>
-            <h3 style={{ paddingLeft: "1rem" }}>CONTRIBUTORS</h3>
+            <h3 style={{ paddingLeft: "1rem" }}>The Orson Welles of Rosebud</h3>
           </Grid.Row>
           <Grid.Row className="members_row">
             <Contributors />

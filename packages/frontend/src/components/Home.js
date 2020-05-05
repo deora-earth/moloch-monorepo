@@ -30,7 +30,7 @@ const Home = () => {
             <Grid.Column>
               <Grid.Row className="guild_value" textAlign="center">
                 <Statistic>
-                  <h1 id="mainHeader">GUILD BANK BALANCE</h1>
+                  <h1 id="mainHeader">FUNDS FOR ALLOCATION</h1>
                   <Statistic.Value id="bankBalance">
                     {convertWeiToDollars(guildBankValue, exchangeRate)} USD
                   </Statistic.Value>

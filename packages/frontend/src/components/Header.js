@@ -1,6 +1,6 @@
 import React, { useState, useCallback, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { Icon, Dropdown, Form, Button, Loader,Menu} from "semantic-ui-react";
+import { Icon, Dropdown, Form, Button, Loader,Menu, Image} from "semantic-ui-react";
 import { withApollo, useQuery } from "react-apollo";
 import { GET_MEMBER_DETAIL } from "../helpers/graphQlQueries";
 import {
@@ -63,7 +63,7 @@ const MainMenu = ({
         <Dropdown.Item
           icon="dollar"
           className='item'
-          content="Ragequit"
+          content="Exit"
           onClick={() => {
             _handleOpenDropdown();
             onLoadWithdrawLootToken();
@@ -455,7 +455,7 @@ export default ({ loggedInUser, client }) => {
     <div id="header">
       <Menu>
         <Menu.Item header>
-          <Link to="/" className="logo"> ROSEBUD DAO</Link>
+          <Image src='./rosebudlogo.png' alt="RosebudDAO" size='small' />
         </Menu.Item>
         <Menu.Item 
           name='Home'

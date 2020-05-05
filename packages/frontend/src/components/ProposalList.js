@@ -17,7 +17,7 @@ const ProposalCard = ({ proposal }) => {
     <Grid.Column mobile={16} tablet={8} computer={5}>
       <Link to={{ pathname: `/proposals/${id}` }} className="uncolored">
         <Segment raised>
-          <Label as='a' color='white' ribbon>
+          <Label as='a' color='black' ribbon>
             <h4>{getProposalCountdownText(proposal)}</h4>
           </Label>
           <p className="name">{proposal.title ? proposal.title : "N/A"}</p>
@@ -215,61 +215,7 @@ const ProposalList = ({ isActive }) => {
 
   const panes = [
     {
-      menuItem: `Voting Period (${votingPeriod.length})`,
-      render: () => (
-        <Tab.Pane attached={false}>
-          <Grid columns={3}>
-            {votingPeriod.map((p, index) => (
-              <ProposalCard
-                exchangeRate={exchangeRate}
-                shareValue={shareValue}
-                totalShares={+totalShares}
-                proposal={p}
-                key={index}
-              />
-            ))}
-          </Grid>
-        </Tab.Pane>
-      ),
-    },
-    {
-      menuItem: `Grace Period (${gracePeriod.length})`,
-      render: () => (
-        <Tab.Pane attached={false}>
-          <Grid columns={3}>
-            {gracePeriod.map((p, index) => (
-              <ProposalCard
-                exchangeRate={exchangeRate}
-                shareValue={shareValue}
-                totalShares={+totalShares}
-                proposal={p}
-                key={index}
-              />
-            ))}
-          </Grid>
-        </Tab.Pane>
-      ),
-    },
-    {
-      menuItem: `Ready For Processing (${readyForProcessing.length})`,
-      render: () => (
-        <Tab.Pane attached={false}>
-          <Grid columns={3}>
-            {readyForProcessing.map((p, index) => (
-              <ProposalCard
-                exchangeRate={exchangeRate}
-                shareValue={shareValue}
-                totalShares={+totalShares}
-                proposal={p}
-                key={index}
-              />
-            ))}
-          </Grid>
-        </Tab.Pane>
-      ),
-    },
-    {
-      menuItem: `In Queue (${inQueue.length})`,
+      menuItem: `Study (${inQueue.length})`,
       render: () => (
         <Tab.Pane attached={false}>
           <Grid columns={3}>
@@ -287,7 +233,61 @@ const ProposalList = ({ isActive }) => {
       ),
     },
     {
-      menuItem: `Completed (${completedLoading ? "..." : completedProposals.length})`,
+      menuItem: `Vote (${votingPeriod.length})`,
+      render: () => (
+        <Tab.Pane attached={false}>
+          <Grid columns={3}>
+            {votingPeriod.map((p, index) => (
+              <ProposalCard
+                exchangeRate={exchangeRate}
+                shareValue={shareValue}
+                totalShares={+totalShares}
+                proposal={p}
+                key={index}
+              />
+            ))}
+          </Grid>
+        </Tab.Pane>
+      ),
+    },
+    {
+      menuItem: `Review (${gracePeriod.length})`,
+      render: () => (
+        <Tab.Pane attached={false}>
+          <Grid columns={3}>
+            {gracePeriod.map((p, index) => (
+              <ProposalCard
+                exchangeRate={exchangeRate}
+                shareValue={shareValue}
+                totalShares={+totalShares}
+                proposal={p}
+                key={index}
+              />
+            ))}
+          </Grid>
+        </Tab.Pane>
+      ),
+    },
+    {
+      menuItem: `Confirm (${readyForProcessing.length})`,
+      render: () => (
+        <Tab.Pane attached={false}>
+          <Grid columns={3}>
+            {readyForProcessing.map((p, index) => (
+              <ProposalCard
+                exchangeRate={exchangeRate}
+                shareValue={shareValue}
+                totalShares={+totalShares}
+                proposal={p}
+                key={index}
+              />
+            ))}
+          </Grid>
+        </Tab.Pane>
+      ),
+    },
+    {
+      menuItem: `Check (${completedLoading ? "..." : completedProposals.length})`,
       render: () => (
         <Tab.Pane attached={false}>
           {completedLoading ? (
